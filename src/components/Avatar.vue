@@ -20,12 +20,13 @@ export default {
     },
     size: {
       type: Number,
+      default: 100,
     },
   },
 };
 </script>
 
-<style>
+<style scope>
 .avatar-img {
   border-radius: 50%;
   object-fit: cover;
