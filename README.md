@@ -24,15 +24,29 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 > Description
 
+This component is to create an avater for each user,you can use it as follows.
 
 
 > Using Methods
 
 ```vue
     <Avatar
-    url="https://..."
-    size=100
+        url="https://..."
+        size=100
     />
 ```
 
 2. Icon
+
+> Description
+
+This component is to create an icon for each part,you can use it as follows.
+
+
+> Using Methods
+
+```vue
+    <Icon
+        type="home"
+    />
+```
