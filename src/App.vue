@@ -1,24 +1,23 @@
 <template>
-  <div class="root">
-    <Avatar
-      url="https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg"
-      :size="100"
-    />
-    <Avatar
-      url="https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg"
-      :size="600"
-    />
+  <div class="icon">
+    <Icon type="qq" />
   </div>
 </template>
 
 <script>
 import Avatar from "./components/Avatar";
+import Icon from "./components/Icon";
 export default {
   name: "App",
   components: {
     Avatar,
+    Icon,
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+  .iconfont{
+    color: red;
+  }
+</style>
