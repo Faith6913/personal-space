@@ -20,6 +20,19 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Components
 
-- Avatar
+1. Avatar
 
-- Icon
+> Description
+
+
+
+> Using Methods
+
+```vue
+    <Avatar
+    url="https://..."
+    size=100
+    />
+```
+
+2. Icon
