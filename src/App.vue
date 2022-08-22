@@ -1,5 +1,5 @@
 <template>
-  <div class="icon">
+  <div class="iconfont-container">
     <Icon type="qq" />
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style scoped>
-  .iconfont{
+  .iconfont-container{
     color: red;
   }
 </style>
