@@ -15,9 +15,9 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
-  .iconfont-container{
-    color: red;
-  }
+.iconfont-container {
+  color: red;
+}
 </style>
