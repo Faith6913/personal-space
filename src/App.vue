@@ -1,7 +1,5 @@
 <template>
-  <div class="iconfont-container">
-    <Icon type="qq" />
-  </div>
+  <Icon type="close" />
 </template>
 
 <script>
@@ -12,12 +10,13 @@ export default {
   components: {
     Avatar,
     Icon,
-  },
+  },    
 };
 </script>
 
 <style scoped>
 .iconfont-container {
+  font-size: 12px;
   color: red;
 }
 </style>
