@@ -20,14 +20,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Components
 
-1. Avatar
+> Avatar
 
-> Description
+- Description
 
 This component is to create an avater for each user,you can use it as follows.
 
 
-> Using Methods
+- Using Methods
 
 ```vue
     <Avatar
@@ -36,14 +36,14 @@ This component is to create an avater for each user,you can use it as follows.
     />
 ```
 
-2. Icon
+> Icon
 
-> Description
+- Description
 
 This component is to create an icon for each part,you can use it as follows.
 
 
-> Using Methods
+- Using Methods
 
 ```vue
     <Icon
