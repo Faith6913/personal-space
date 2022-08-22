@@ -1,6 +1,7 @@
 <template>
   <div class="icon">
     <Icon type="qq" />
+    <Icon type="home" />
   </div>
 </template>
 
@@ -18,6 +19,6 @@ export default {
 
 <style scoped>
   .iconfont{
-    color: red;
+    font-size: 12px;
   }
 </style>
