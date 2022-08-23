@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 @import "~@/styles/global.less";
 .pager-container {
   display: flex;

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Test</h1>
     <Pager
       :current="curPage"
       :total="410"
@@ -12,7 +11,7 @@
 </template>
 
 <script>
-import Pager from "./index";
+import Pager from "./";
 export default {
   name: "App",
   data() {
@@ -36,4 +35,5 @@ export default {
 
 <style scoped></style>
 
-/* @pageChange="handlePageChange($event)" */
+
+
