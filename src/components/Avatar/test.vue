@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Avatar src="https://img0.baidu.com/it/u=800907297,778987443&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"/>
+    <Avatar url="https://img0.baidu.com/it/u=800907297,778987443&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"/>
   </div>
 </template>
 

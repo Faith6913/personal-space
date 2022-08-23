@@ -23,7 +23,6 @@ const classMap = {
   chat: "iconliuyan",
 };
 export default {
-  name: "IconComponent",
   classMap: classMap,
   props: {
     type: {

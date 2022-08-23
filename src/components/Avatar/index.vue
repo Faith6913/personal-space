@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  name: "AvatarComponent",
   props: {
     url: {
       type: String,
