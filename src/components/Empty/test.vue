@@ -17,4 +17,9 @@ export default {
 </script>
 
 <style>
+.container{
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
 </style>

@@ -25,10 +25,10 @@ export default {
 };
 </script>
 
-<style scope>
+<style lang="less" scope>
 .avatar-container {
   border-radius: 50%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
 }
 </style>

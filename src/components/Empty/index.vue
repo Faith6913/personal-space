@@ -24,14 +24,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "~@/styles/self-center.less";
 @textColor: rgb(164, 162, 162);
 @iconColor: rgb(143, 133, 133);
 .empty-container {
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // height: inherit;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  .self-center();
   .iconfont {
     font-size: 40px;
     color: @iconColor;
