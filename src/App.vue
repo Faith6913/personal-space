@@ -16,7 +16,7 @@
       </template>
     </Layout>
   </div>
-</template>
+</template> 
 
 <script>
 import Avatar from "./components/Avatar";
