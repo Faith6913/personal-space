@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/styles/self-center.less";
+@import "~@/styles/mixin.less";
 @textColor: rgb(164, 162, 162);
 @iconColor: rgb(143, 133, 133);
 .empty-container {
