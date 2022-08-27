@@ -11,7 +11,7 @@
     </div>
     <div class="down">
         <Contact class="contact" />
-        <p>鲁ICP备198372908号</p>
+        <p>苏ICP备198372908号</p>
     </div>
   </div>
 </template>
