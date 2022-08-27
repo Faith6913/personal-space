@@ -12,7 +12,7 @@
         </div>
       </template>
       <template #right>
-        <div class="right">right</div>
+        <div class="right"></div>
       </template>
     </Layout>
   </div>

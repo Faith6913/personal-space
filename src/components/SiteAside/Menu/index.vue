@@ -1,16 +1,17 @@
 <template>
   <nav class="menu-container">
-    <a
+    <RouterLink
+      exact="true"
       v-for="item in items"
       :key="item.link"
-      :href="item.link"
+      :to="item.link"
       :class="{ selected: isSelected(item.link) }"
     >
       <div class="icon">
         <Icon :type="item.icon" />
       </div>
       <span>{{ item.title }}</span>
-    </a>
+    </RouterLink>
   </nav>
 </template>
 
@@ -81,7 +82,7 @@ export default {
     &:hover {
       color: #fff;
     }
-    &.selected {
+    &.router-link-exact-active{
       background-color: #2d2d2d;
     }
   }
