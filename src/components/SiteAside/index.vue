@@ -11,7 +11,7 @@
     </div>
     <div class="down">
         <Contact class="contact" />
-        <p>鲁ICP备198372908号   </p>
+        <p>鲁ICP备198372908号</p>
     </div>
   </div>
 </template>
@@ -57,6 +57,7 @@ export default {
     margin: 40px auto;
     text-align: center;
     font-size: 14px;
+    color: @gray;
   }
 }
 </style>
