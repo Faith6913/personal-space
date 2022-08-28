@@ -12,6 +12,7 @@ export default function getComponentRootDom(comp, props) {
     },
   });
   // 将虚拟Dom挂载到真实的Dom上
+  // 在组件实例中进行挂载
   vm.$mount();
   return vm.$el; // 获取真实的Dom
 }

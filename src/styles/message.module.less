@@ -1,7 +1,34 @@
 @import "./mixin.less";
-.message{
-    color: red;
-    .self-center(fixed);
-    z-index: 999;
-    
+@import "./var.less";
+.message {
+  color: #fff;
+  .self-center(absolute);
+  z-index: 999;
+  height: 30px;
+  border-radius: 7px;
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  transform: translate(-50%, -50%) translateY(20px);
+  opacity: 0;
+  transition: .5s;
+  white-space: nowrap;
+  &-info {
+    background-color: @info;
+  }
+  &-error {
+    background-color: @error;
+  }
+  &-success {
+    background-color: @success;
+  }
+  &-warn {
+    background-color: @warn;
+  }
+}
+.icon {
+  font-size: 20px;
+  margin-right: 7px;
+  color: #fff;
 }
