@@ -1,7 +1,7 @@
 <template>
   <nav class="menu-container">
     <RouterLink
-      exact="true"
+      :exact="true"
       v-for="item in items"
       :key="item.link"
       :to="item.link"
