@@ -4,3 +4,4 @@ export async function getCountries(){
     const resp = await axios.get("/api/v3/oauth/sms/supported_countries");
     console.log(resp.data.data);
 }
+getCountries();

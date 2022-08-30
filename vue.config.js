@@ -5,6 +5,9 @@ module.exports = defineConfig({
     proxy:{
       "/api/v3": {
         target: "https://www.zhihu.com"
+      },
+      "/images":{
+        target:"https://cdn.leoh.io"
       }
     }
   }
