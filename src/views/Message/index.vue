@@ -10,7 +10,6 @@ import { showMessage, getComponentRootDom } from "@/utils";
 export default {
   methods: {
     handler() {
-      console.log("处理一下点击事件");
       showMessage({
         content: "感谢您, 评论成功 ~",
         type: "success",
@@ -20,8 +19,7 @@ export default {
           console.log("消息弹窗结束啦~");
         },
       });
-    },
-  },
+    },  },
 };
 </script>
 
