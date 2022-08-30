@@ -1,11 +1,6 @@
-import axios from "axios";
-import { showMessage } from "@/utils";
+import ins from "./request";
 export async function getBanner() {
-  const resp = await axios.get("/api/banner");
-  return resp.data;
+  const resp = await ins.get("/api/banner");
+  return resp;
 }
 
-showMessage({
-  content: "adafafaew",
-  type: "error",
-});

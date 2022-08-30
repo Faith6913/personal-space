@@ -1,7 +1,7 @@
 import Mock from "mockjs";
 Mock.mock("/api/banner", "get", {
-  code: 0, 
-  msg: "", 
+  code: 200, 
+  msg: "咱也不晓得是啥错误", 
   data: [
     {
       id: "1",
