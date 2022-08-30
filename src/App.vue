@@ -2,21 +2,17 @@
   <div id="App">
     <Layout>
       <template #left>
-        <div class="left">
-          <SiteAside />
-        </div>
+        <SiteAside class="left" />
       </template>
       <template>
-        <div class="main">
-          <RouterView/>
-        </div>
+        <RouterView />
       </template>
       <template #right>
         <div class="right"></div>
       </template>
     </Layout>
   </div>
-</template> 
+</template>
 
 <script>
 import Avatar from "./components/Avatar";
@@ -27,13 +23,13 @@ export default {
   components: {
     Avatar,
     Layout,
-    SiteAside
+    SiteAside,
   },
 };
 </script>
 
 <style lang="less" scoped>
-.left{  
+.left {
   width: 250px;
   height: 100vh;
 }

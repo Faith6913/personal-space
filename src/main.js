@@ -8,10 +8,10 @@ Vue.config.productionTip = false;
 Vue.prototype.showMessage = showMessage;
 
 import router from "./router/router.js";
-import { getBanner } from "@/api/banner.js";
-getBanner().then((n) => {
-  console.log(n);
-});
+// import { getBanner } from "@/api/banner.js";
+// getBanner().then((n) => {
+//   console.log(n);
+// });
 
 new Vue({
   router,
