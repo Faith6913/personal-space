@@ -3,13 +3,21 @@
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in banners" :key="item.id">
         <CarouselItem />
+        {{ item.id }}
       </li>
     </ul>
 
-    <div class="icon icon-up" @click="prev">
+    <div 
+      class="icon icon-up" 
+      v-show="index !== 0"
+      @click="prev"
+    >
       <Icon class="pericon" type="arrowUp" />
     </div>
-    <div class="icon icon-down" @click="next">
+    <div 
+    class="icon icon-down"
+    v-show="index !== banners.length - 1" 
+    @click="next">
       <Icon class="pericon" type="arrowDown" />
     </div>
 
@@ -57,14 +65,14 @@ export default {
     prev() {
       this.index--;
       if (this.index < 0) {
-        this.index = this.banners.length - 1;
+        this.index = 0;
       }
       this.toPage();
     },
     next() {
       this.index++;
       if (this.index >= this.banners.length) {
-        this.index = 0;
+        this.index = this.banners.length - 1;
       }
       this.toPage();
     },
@@ -95,6 +103,7 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
+    transition: 2s;
     li {
       width: 100%;
       height: 100%;
