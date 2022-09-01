@@ -42,7 +42,7 @@ export default {
     loadHandler() {
       this.originLoaded = true;
       setTimeout(() => {
-        console.log(this.duration);
+        // console.log(this.duration);
         this.isDone = true;
         this.$emit("load");
       }, this.duration);

@@ -2,8 +2,7 @@
   <div class="home-container">
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in banners" :key="item.id">
-        <CarouselItem />
-        {{ item.id }}
+        <CarouselItem :src="banners" :_id="item.id"/>
       </li>
     </ul>
 
@@ -94,13 +93,13 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: @dark;
+  // background-color: @dark;
   .carousel-container {
     margin: 0;
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: 2s;
+    transition: .5s;
     li {
       width: 100%;
       height: 100%;
