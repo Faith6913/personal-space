@@ -18,13 +18,32 @@ export default {
   components: {
     ImageLoader,
   },
+  data() {
+    return {
+      titleWidth: 0,
+      despWidth: 0,
+    };
+  },
+  mounted() {
+    this.titleWidth = this.$refs.title.clientWidth;
+    this.despWidth = this.$refs.desp.clientWidth;
+  },
   methods: {
     handlerLoad() {
-      console.log("处理加载完成事件");
-      // animation: textLoading 2s alternate;
-      console.log(this.$refs.title);
-      // this.$refs.title.style.width = "100px";
-      // this.$refs.title.style.animation = "textLoading 2s alternate infinite";
+      this.showWords();
+    },
+    showWords() {
+      this.$refs.title.style.opacity = 1;
+      this.$refs.desp.style.opacity = 1;
+      this.$refs.title.style.width = 0;
+      this.$refs.desp.style.width = 0;
+      this.$refs.title.style.transition = "2s";
+      this.$refs.desp.style.transition = "3s";
+      this.$refs.desp.style.transitionDelay = "2s";
+      this.$refs.desp.clientWidth;
+      this.$refs.title.clientWidth;
+      this.$refs.title.style.width = this.titleWidth + "px";
+      this.$refs.desp.style.width = this.despWidth + "px";
     },
   },
 };
@@ -53,13 +72,7 @@ export default {
     letter-spacing: 4px;
     text-shadow: 2px 0 0 rgba(0, 0, 0, 0.5), -2px 0 0 rgba(0, 0, 0, 0.5),
       0 2px 0 rgba(0, 0, 0, 0.5), 0 -2px 0 rgba(0, 0, 0, 0.5);
-  }
-  .title {
-    width: 0px;
-    // animation: textLoading 2s infinite;
-    // animation-name: textLoading;
-    // animation-duration: "2s";
-    // animation-iteration-count: infinite;
+    opacity: 0;
   }
   .description {
     font-size: 1.2em;
