@@ -7,17 +7,14 @@
       </li>
     </ul>
 
-    <div 
-      class="icon icon-up" 
-      v-show="index !== 0"
-      @click="prev"
-    >
+    <div class="icon icon-up" v-show="index !== 0" @click="prev">
       <Icon class="pericon" type="arrowUp" />
     </div>
-    <div 
-    class="icon icon-down"
-    v-show="index !== banners.length - 1" 
-    @click="next">
+    <div
+      class="icon icon-down"
+      v-show="index !== banners.length - 1"
+      @click="next"
+    >
       <Icon class="pericon" type="arrowDown" />
     </div>
 
