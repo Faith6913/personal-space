@@ -94,12 +94,20 @@ export default {
   height: 100%;
   position: relative;
   // background-color: @dark;
+
+  // Test
+  width: 400px;
+  height: 300px;
+  border: 1px solid #008c8c;
+  margin: 100px auto;
+  
   .carousel-container {
     margin: 0;
     width: 100%;
     height: 100%;
     position: absolute;
     transition: 0.5s;
+
     li {
       width: 100%;
       height: 100%;
