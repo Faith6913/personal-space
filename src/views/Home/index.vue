@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" @scroll="handlerScroll">
+  <div class="home-container" @mousewheel="handlerScroll">
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in banners" :key="item.id">
         <CarouselItem :src="banners" :_id="item.id" :curIndex="index" />
@@ -42,6 +42,9 @@ export default {
       banners: [],
       index: 0, // 当前显示的第几章轮播图
       containerHeight: 0, // 容器的高度
+      scrollNextCount: 0,
+      scrollPreCount: 0,
+      scrollHeight: 0,
     };
   },
   // 这里仅仅是注入完成
@@ -80,7 +83,19 @@ export default {
       this.toPage();
     },
     handlerScroll(e) {
+      this.scrollCount++;
       console.log(e);
+      // if(e.deltaY > 0){
+      //   scrollNextCount ++;
+      // }
+      // if (this.scrollCount >= 3 && e.deltaY > 0) {
+      //   console.log("下一页");
+      //   this.scrollCount = 0;
+      // }
+      // if (this.scrollCount >= 3 && e.deltaY < 0) {
+      //   console.log("上一页");
+      //   this.scrollCount = 0;
+      // }
     },
   },
 };

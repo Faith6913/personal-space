@@ -80,9 +80,9 @@ export default {
       imageDom.style.left = `${
         -2 * leftOver * [(e.clientX - containerLeft) / containerWidth]
       }px`;
-      // imageDom.style.top = `${
-      //   -2 * topOver * [(e.clientY - containerTop) / containerHeight]
-      // }px`;
+      imageDom.style.top = `${
+        -2 * topOver * [(e.clientY - containerTop) / containerHeight]
+      }px`;
     },
   },
 };
@@ -94,6 +94,8 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
+  // 不overflow: hidden 一下的话，切换图片的时候会覆盖上面的
+  overflow: hidden;
   .carousel-img {
     width: 120%;
     height: 120%;
