@@ -1,11 +1,6 @@
 <template>
-  <div class="carousel" ref="container">
-    <div
-      class="carousel-img"
-      :style="imagePosition"
-      ref="imgLoader"
-      @mousemove="handlerMousemove"
-    >
+  <div class="carousel" ref="container" @mousemove="handlerMousemove">
+    <div class="carousel-img"  ref="imgLoader">
       <ImageLoader
         class="image-loader"
         :src="src[_id - 1].bigImg"
@@ -35,14 +30,6 @@ export default {
       mouseStartY: null,
     };
   },
-  computed: {
-    imagePosition() {
-      return {
-        left: "-0px",
-        top: "-0px",
-      };
-    },
-  },
   mounted() {
     this.titleWidth = this.$refs.title.clientWidth;
     this.despWidth = this.$refs.desp.clientWidth;
@@ -69,14 +56,6 @@ export default {
       this.$refs.title.style.width = this.titleWidth + "px";
       this.$refs.desp.style.width = this.despWidth + "px";
     },
-    handlerClick(e) {
-      const domRect = e.target.getBoundingClientRect();
-      const imgWidth = domRect.width;
-      const imgHeight = domRect.height;
-      const startX = e.screenX;
-      const startY = e.screenY;
-      console.log(e.target);
-    },
     setDatas() {
       this.containerSize = {
         width: this.$refs.container.clientWidth,
@@ -88,16 +67,22 @@ export default {
       };
     },
     handlerMousemove(e) {
-      if(this.mouseStartX === null || this.mouseStartY === null){
-        this.mouseStartX = e.screenX;
-        this.mouseStartY = e.screenY;
-        return;
-      }
-      console.log(this.mouseStartX, this.mouseStartY);
-      if(e.screenX - this.mouseStartX >= 40){
-        console.log("移动一下");
-        return;
-      }
+      const domRect = this.$refs.container.getBoundingClientRect();
+      const containerLeft = domRect.left;
+      const containerTop = domRect.top;
+      const containerWidth = this.containerSize.width;
+      const containerHeight = this.containerSize.height;
+      const imageDom = this.$refs.imgLoader;
+      const leftOver = (this.imageSize.width - containerWidth) / 2;
+      const topOver = (this.imageSize.height - containerHeight) / 2;
+
+      // 直接考虑极限状态，然后剩下的距离平均分摊，还是老师的思路比较好实现
+      imageDom.style.left = `${
+        -2 * leftOver * [(e.clientX - containerLeft) / containerWidth]
+      }px`;
+      // imageDom.style.top = `${
+      //   -2 * topOver * [(e.clientY - containerTop) / containerHeight]
+      // }px`;
     },
   },
 };
@@ -116,8 +101,8 @@ export default {
 
     .image-loader {
       position: absolute;
-      left: -40px;
-      top: -30px;
+      left: 0;
+      top: 0;
       z-index: -1;
     }
   }

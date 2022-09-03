@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="home-container" @scroll="handlerScroll">
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in banners" :key="item.id">
         <CarouselItem :src="banners" :_id="item.id" :curIndex="index" />
@@ -79,6 +79,9 @@ export default {
       this.index = i;
       this.toPage();
     },
+    handlerScroll(e) {
+      console.log(e);
+    },
   },
 };
 </script>
@@ -93,14 +96,13 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  // background-color: @dark;
 
   // Test
-  width: 400px;
-  height: 300px;
-  border: 1px solid #008c8c;
-  margin: 100px auto;
-  
+  // width: 400px;
+  // height: 300px;
+  // border: 1px solid #008c8c;
+  // margin: 0px auto;
+
   .carousel-container {
     margin: 0;
     width: 100%;
