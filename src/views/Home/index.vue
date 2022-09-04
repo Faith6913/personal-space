@@ -1,18 +1,17 @@
 <template>
-  <div class="home-container" @mousewheel="handlerScroll">
-    <Loading :isLoading="isLoading"/>
+  <div v-loading="isLoading" class="home-container" @mousewheel="handlerScroll">
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in banners" :key="item.id">
         <CarouselItem :src="banners" :_id="item.id" :curIndex="index" />
       </li>
     </ul>
 
-    <div class="icon icon-up" v-show="index !== 0" @click="prev">
+    <div class="icon icon-up" v-show="!isLoading && index !== 0" @click="prev">
       <Icon class="pericon" type="arrowUp" />
     </div>
     <div
       class="icon icon-down"
-      v-show="index !== banners.length - 1"
+      v-show="!isLoading && index !== banners.length - 1"
       @click="next"
     >
       <Icon class="pericon" type="arrowDown" />
@@ -33,12 +32,10 @@
 import { getBanners } from "@/api/banner";
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
-import Loading from "@/components/Loading";
 export default {
   components: {
     CarouselItem,
     Icon,
-    Loading,
   },
   data() {
     return {

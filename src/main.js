@@ -7,11 +7,10 @@ import { showMessage } from "@/utils";
 Vue.config.productionTip = false;
 Vue.prototype.showMessage = showMessage;
 
+// 全局注册自定义指令
+import vloading from "@/directives/loading";
+Vue.directive("loading", vloading);
 import router from "./router/router.js";
-// import { getBanner } from "@/api/banner.js";
-// getBanner().then((n) => {
-//   console.log(n);
-// });
 
 new Vue({
   router,
