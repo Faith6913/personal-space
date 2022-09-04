@@ -1,5 +1,6 @@
 <template>
   <div class="home-container" @mousewheel="handlerScroll">
+    <Loading :isLoading="isLoading"/>
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in banners" :key="item.id">
         <CarouselItem :src="banners" :_id="item.id" :curIndex="index" />
@@ -32,24 +33,25 @@
 import { getBanners } from "@/api/banner";
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
+import Loading from "@/components/Loading";
 export default {
   components: {
     CarouselItem,
     Icon,
+    Loading,
   },
   data() {
     return {
       banners: [],
       index: 0, // 当前显示的第几章轮播图
       containerHeight: 0, // 容器的高度
-      scrollNextCount: 0,
-      scrollPreCount: 0,
-      scrollHeight: 0,
+      isLoading: true,
     };
   },
   // 这里仅仅是注入完成
   async created() {
     this.banners = await getBanners();
+    this.isLoading = false;
   },
   // 等挂载完成形成真实的DOM之后才能获取到相应的DOM元素
   mounted() {
@@ -83,7 +85,6 @@ export default {
       this.toPage();
     },
     handlerScroll(e) {
-      this.scrollCount++;
       console.log(e);
       // if(e.deltaY > 0){
       //   scrollNextCount ++;
