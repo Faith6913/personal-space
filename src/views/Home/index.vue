@@ -1,8 +1,8 @@
 <template>
   <div v-loading="isLoading" class="home-container" @mousewheel="handlerScroll">
     <ul class="carousel-container" ref="carousel">
-      <li v-for="item in banners" :key="item.id">
-        <CarouselItem :src="banners" :_id="item.id" :curIndex="index" />
+      <li v-for="item in data" :key="item.id">
+        <CarouselItem :src="data" :_id="item.id" :curIndex="index" />
       </li>
     </ul>
 
@@ -11,7 +11,7 @@
     </div>
     <div
       class="icon icon-down"
-      v-show="!isLoading && index !== banners.length - 1"
+      v-show="!isLoading && index !== data.length - 1"
       @click="next"
     >
       <Icon class="pericon" type="arrowDown" />
@@ -19,7 +19,7 @@
 
     <ul class="indicators">
       <li
-        v-for="(item, i) of banners"
+        v-for="(item, i) of data"
         :key="item.id"
         :class="`indicator ${i === index ? 'active' : ''}`"
         @click="changeByIndicator(i)"
@@ -32,24 +32,28 @@
 import { getBanners } from "@/api/banner";
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
+import fetchAPI from "@/mixins/fetchData";
 export default {
+  mixins:[fetchAPI],
   components: {
     CarouselItem,
     Icon,
   },
   data() {
     return {
-      banners: [],
       index: 0, // 当前显示的第几章轮播图
       containerHeight: 0, // 容器的高度
       isLoading: true,
     };
   },
   // 这里仅仅是注入完成
-  async created() {
-    this.banners = await getBanners();
-    this.isLoading = false;
-  },
+  // 这里可以不用写代码了，全部搬到了组件混入的地方用来获取远程数据
+  // async created() {
+  //   this.data = await getBanners();
+  //   this.isLoading = false;
+  // },
+
+
   // 等挂载完成形成真实的DOM之后才能获取到相应的DOM元素
   mounted() {
     this.containerHeight = this.$refs.carousel.clientHeight;
@@ -60,6 +64,10 @@ export default {
     },
   },
   methods: {
+    // 这个方法是用来给组件混入的函数传参的，要不然组件混入内部不晓得获取哪里的数据
+    async fetchData(){
+      return await getBanners();
+    },
     prev() {
       this.index--;
       if (this.index < 0) {
@@ -69,8 +77,8 @@ export default {
     },
     next() {
       this.index++;
-      if (this.index >= this.banners.length) {
-        this.index = this.banners.length - 1;
+      if (this.index >= this.data.length) {
+        this.index = this.data.length - 1;
       }
       this.toPage();
     },
@@ -81,6 +89,7 @@ export default {
       this.index = i;
       this.toPage();
     },
+    // 处理容器的鼠标滚轮事件，但是每个鼠标的滚轮事件属性不太一样，还没找到解决方案
     handlerScroll(e) {
       console.log(e);
       // if(e.deltaY > 0){
