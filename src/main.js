@@ -21,6 +21,11 @@ new Vue({
 }).$mount("#app");
 
 // 测试一下博客远程数据获取
-import { getBlogtypes } from "@/api/blog.js";
+import { getBlogtypes, getBlogs } from "@/api/blog.js";
 console.log("------ Test -------");
-console.log(getBlogtypes());
+getBlogtypes().then((resp)=>{
+  console.log("博客分类",resp);
+});
+getBlogs(2, 20, 2).then((resp)=>{
+  console.log("博客",resp);
+});
