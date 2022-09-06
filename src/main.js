@@ -20,7 +20,7 @@ new Vue({
   render: (h) => h(App),
 }).$mount("#app");
 
-/* // 测试一下博客远程数据获取
+// 测试一下博客远程数据获取
 import { getBlogtypes, getBlogs } from "@/api/blog.js";
 console.log("------ Test -------");
 getBlogtypes().then((resp)=>{
@@ -28,4 +28,4 @@ getBlogtypes().then((resp)=>{
 });
 getBlogs(2, 20, 2).then((resp)=>{
   console.log("博客",resp);
-}); */
+});
