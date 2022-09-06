@@ -10,34 +10,34 @@ export default {
   data() {
     return {
       lists: [
-        { name: "a", isSelcet: false },
-        { name: "b", isSelcet: false },
+        { name: "HTML", isSelcet: false },
+        { name: "CSS", isSelcet: false },
         {
-          name: "c",
+          name: "JavaScript",
           isSelcet: false,
           children: [
             {
-              name: "c-1",
+              name: "基础知识",
               isSelcet: false,
             },
             {
-              name: "c-2",
+              name: "JavaScript进阶",
               isSelcet: false,
               children: [
                 {
-                  name: "c-2-1",
+                  name: "原型链",
                   isSelcet: false,
                 },
                 {
-                  name: "c-2-2",
+                  name: "闭包",
                   isSelcet: false,
                 },
                 {
-                  name: "c-2-3",
+                  name: "this指向",
                   isSelcet: false,
                 },
                 {
-                  name: "c-2-4",
+                  name: "继承",
                   isSelcet: true,
                 },
               ],
@@ -45,30 +45,30 @@ export default {
           ],
         },
         {
-          name: "d",
+          name: "Vue",
           isSelcet: true,
           children: [
             {
-              name: "d-1",
+              name: "自定义指令",
               isSelcet: false,
             },
             {
-              name: "d-2",
+              name: "组件递归",
               isSelcet: false,
             },
             {
-              name: "d-3",
+              name: "Vue组件生命周期",
               isSelcet: false,
             },
             {
-              name: "d-4",
+              name: "钩子函数",
               isSelcet: false,
             },
           ],
         },
-        { name: "e", isSelcet: false },
-        { name: "f", isSelcet: false },
-        { name: "g", isSelcet: false },
+        { name: "React", isSelcet: false },
+        { name: "webpack", isSelcet: false },
+        { name: "npm", isSelcet: false },
       ],
     };
   },
