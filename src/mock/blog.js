@@ -35,7 +35,7 @@ Mock.mock(/^\/api\/blog\?.*$/, "get", function (options) {
           },
           "scanNumber|0-1000": 0,
           "commentNumber|0-200": 0,
-          thumb: Mock.Random.image("300x250", "#000", "#fff", "Random Image"),
+          "thumb|1": [Mock.Random.image("300x250", "#000", "#fff", "Random Image"), null],
           createDate: "@date('T')",
         },
       ],
