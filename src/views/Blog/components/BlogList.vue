@@ -16,7 +16,7 @@
             <span>日期: {{ formatDate(item.createDate) }}</span>
             <span>浏览: {{ item.scanNumber }}</span>
             <span>评论: {{ item.commentNumber }}</span>
-            <a href="/blog/cate/8">分类: {{ item.category.id }}</a>
+            <a href="">分类: {{ item.category.id }}</a>
           </div>
           <p class="desp">
             {{ item.description }}
@@ -110,13 +110,23 @@ export default {
 
     // 观察this.$route
     // 简洁写法
-    async $route(){
+    async $route() {
       this.isLoading = true;
       this.data = [];
       // console.log(this.$refs.container.scrollTop);
       this.data = await this.fetchData();
       this.isLoading = !this.isLoading;
-    }
+      // this.filterArray = this.data.rows.filter((item) => {
+      //   // if (this.routeInfo.categoryId === -1) {
+      //   //   return true;
+      //   // } else {
+      //   //   return item.category.id === this.routerInfo.categoryId;
+      //   // }
+      //   console.log(this.routeInfo.categoryId, item.category.id);
+      //   // return this.routeInfo.categoryId === item.category.id;
+      // });
+      // this.filterArray = [];
+    },
     // 完整写法
     // $route: {
     //   handler(newVal, oldVal) {},
@@ -136,16 +146,15 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: scroll;
+  overflow-y: scroll;
   // background-color: rgb(227, 182, 182);
   .article-preview-container {
-    width: 95%;
+    width: 90%;
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
-    overflow: auto;
     scroll-behavior: smooth;
     // background-color: rgb(144, 239, 100);
     .article-item {

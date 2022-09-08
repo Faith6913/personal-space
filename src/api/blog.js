@@ -21,5 +21,6 @@ export async function getBlogs(page = 1, limit = 10, categoryid = 1) {
  * @returns resp 相应结果
  */
 export async function getBlogtypes() {
-  return await request.get("/api/blogtype");
+  const resp = await request.get("/api/blogtype");
+  return resp.data;
 }

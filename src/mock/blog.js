@@ -8,7 +8,7 @@ Mock.mock("/api/blogtype", "get", {
     msg: "",
     "data|10-20": [
       {
-        "id|+1": 0,
+        "id|+1": 1,
         name: "分类@id",
         "articleCount|10-100": 0, //该分类下文章的数量
         order: "@id",

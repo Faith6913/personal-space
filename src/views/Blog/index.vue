@@ -4,7 +4,7 @@
       <template>
         <BlogList />
       </template>
-      <template #right>
+      <template #right class="rightList">
         <BlogCategory />
       </template>
     </Layout>
@@ -24,4 +24,10 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.blog-conatiner {
+  .rightList {
+    overflow-y: scroll;
+  }
+}
+</style>
