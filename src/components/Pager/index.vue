@@ -116,7 +116,7 @@ export default {
     handleClick(e, newPage) {
       // 抛出一个事件，使用vue实例中的一个成员
       e.preventDefault();
-      console.log(e.target);
+      // console.log(e.target);
       if (newPage <= 0) {
         newPage = 1;
       }

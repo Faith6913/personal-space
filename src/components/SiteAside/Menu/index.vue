@@ -1,11 +1,10 @@
 <template>
   <nav class="menu-container">
     <RouterLink
-      :exact="true"
+      :exact="isSelected(item.link)"
       v-for="item in items"
       :key="item.link"
       :to="item.link"
-      :class="{ selected: isSelected(item.link) }"
     >
       <div class="icon">
         <Icon :type="item.icon" />
@@ -56,9 +55,10 @@ export default {
   methods: {
     isSelected(path) {
       if (path === "/blog") {
-        return location.pathname.startsWith("/blog");
-      } else {
-        return location.pathname.toLowerCase() === path.toLowerCase();
+        // return location.pathname.startsWith("/blog");
+        return false;
+      } else if (path === "/") {
+        return true;
       }
     },
   },
@@ -82,7 +82,8 @@ export default {
     &:hover {
       color: #fff;
     }
-    &.router-link-exact-active{
+    &.router-link-active,
+    &.router-link-exect-active {
       background-color: #2d2d2d;
     }
   }

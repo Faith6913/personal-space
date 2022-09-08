@@ -8,8 +8,11 @@ export default function (el, binding) {
     img.classList.add(styles.loading);
     img.dataset.id = "loading";
     el.appendChild(img);
-  }else {
+  } else {
     const img = el.querySelector("img[data-id]");
+    if (!img) {
+      return;
+    }
     img.remove();
   }
 }

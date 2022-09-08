@@ -1,63 +1,40 @@
 <template>
-  <div class="blog-list-container">
-    <ul class="article-preview-container" v-loading="isLoading">
-      <li class="article-item">
-        <div class="thumb">
+  <div class="blog-list-container" v-loading="isLoading">
+    <ul class="article-preview-container" ref="container">
+      <li class="article-item" v-for="item in data.rows" :key="item.id">
+        <div class="thumb" v-if="item.thumb">
           <a href="">
-            <img
-              src="http://dummyimage.com/300x250/000/fff&text=Random Image"
-              alt="不会就开始大幅"
-              title="不会就开始大幅"
-            />
+            <img :src="item.thumb" :alt="item.title" :title="item.title" />
           </a>
         </div>
 
         <div class="main">
-          <h2 class="title">{{data[0].title}}</h2>
-          <div class="info">
-            <span>日期: 2020-09-21</span>
-            <span>浏览: 237</span>
-            <span>评论: 43</span>
-            <a href="/blog/cate/8">分类: 8</a>
-          </div>
-          <p class="desp">
-            和艰苦地方立法拉黑邵剑锋等哈就开始发力看见对方年龄数据宽度
-          </p>
-        </div>
-      </li>
-      <li class="article-item">
-        <div class="thumb" v-if="0">
-          <a href="#">
-            <img src="null" alt="不会就开始大幅" title="不会就开始大幅" />
+          <a href="">
+            <h2 class="title">{{ item.title }}</h2>
           </a>
-        </div>
-
-        <div class="main">
-          <h2 class="title">不会就开始大幅</h2>
           <div class="info">
-            <span>日期: 2020-09-21</span>
-            <span>浏览: 237</span>
-            <span>评论: 43</span>
-            <a href="/blog/cate/8">分类: 8</a>
+            <span>日期: {{ formatDate(item.createDate) }}</span>
+            <span>浏览: {{ item.scanNumber }}</span>
+            <span>评论: {{ item.commentNumber }}</span>
+            <a href="/blog/cate/8">分类: {{ item.category.id }}</a>
           </div>
           <p class="desp">
-            和艰苦地方立法拉黑asdsfs的空间还是发货啦事发后覅按客户就发了拉二胡flaw邵剑锋等哈就开始
-            和艰苦地方立法货啦拉黑asdsfs的空间还是发货啦事发后覅按客户就发了拉二胡flaw邵剑锋等哈就开始发力看见对方年龄数据宽度
-            和艰苦地方立法拉黑asdsfs的空间还是发货啦拉黑asdsfs的空间还是发货啦事发后覅按客户就发了拉二胡flaw邵剑锋等哈就开始发力看见对方年龄数据宽度
-            Dasdsfs的空间还是发货啦事发后覅按客户就发了拉二胡flaw邵剑锋等哈就开始发力看见对方年龄数据宽度发力看见对方年龄数据宽度
+            {{ item.description }}
           </p>
         </div>
       </li>
+      <!-- 下面写分页插件 -->
+      <div class="pager" v-if="!isLoading">
+        <Pager
+          :current="routeInfo.page"
+          :total="total"
+          :limit="routeInfo.limit"
+          :visibleNumber="10"
+          @pageChange="handlePageChange"
+          class="pager"
+        />
+      </div>
     </ul>
-    <!-- 下面写分页插件 -->
-    <Pager
-      :current="1"
-      :total="1000"
-      :limit="10"
-      :visibleNumber="10"
-      @pageChange="handlePageChange()"
-      class="pager"
-    />
   </div>
 </template>
 
@@ -65,8 +42,9 @@
 import { getBlogs } from "@/api/blog.js";
 import fetchAPI from "@/mixins/fetchData";
 import Pager from "@/components/Pager";
+import { formatDate } from "@/utils";
 export default {
-  mixins: [fetchAPI()],
+  mixins: [fetchAPI],
   components: {
     Pager,
   },
@@ -75,14 +53,77 @@ export default {
       total: null,
     };
   },
-  methods: {
-    handlePageChange() {
-      console.log("handlePageChange");
+  computed: {
+    // 获取路由里的信息
+    routeInfo() {
+      const categoryId = +this.$route.params.categoryId || -1;
+      const page = +this.$route.query.page || 1;
+      const limit = +this.$route.query.limit || 10;
+      // console.log(categoryId, page, limit);
+      return {
+        categoryId,
+        page,
+        limit,
+      };
     },
-    async fetchData(){
-      const resp = await getBlogs();
-      return resp.rows;
+  },
+  methods: {
+    handlePageChange(newPage) {
+      console.log(newPage);
+      const query = {
+        page: newPage,
+        limit: this.routeInfo.limit,
+      };
+      // 跳转到当前的分类id, 当前的页容量, newPage的页码
+      // 做无刷新的跳转
+      if (this.routeInfo.categoryId === -1) {
+        // /blog?page=${newPage}&limit=${this.routeInfo.limit}
+        this.$router.push({
+          name: "Blog",
+          query,
+        });
+      } else {
+        // /blog/cate/${this.routeInfo.categoryId}?page=${newPage}&limit=${this.routeInfo.limit}
+        this.$router.push({
+          name: "CategoryBlog",
+          query,
+          params: {
+            categoryId: this.routeInfo.categoryId,
+          },
+        });
+      }
+    },
+    async fetchData() {
+      const resp = await getBlogs(
+        this.routeInfo.page,
+        this.routeInfo.limit,
+        this.routeInfo.categoryId
+      );
+      this.total = resp.total;
+      return resp;
+    },
+    formatDate,
+  },
+  watch: {
+    // 观察this.data
+    // data(){}
+
+    // 观察this.$route
+    // 简洁写法
+    async $route(){
+      this.isLoading = true;
+      this.data = [];
+      // console.log(this.$refs.container.scrollTop);
+      this.data = await this.fetchData();
+      this.isLoading = !this.isLoading;
     }
+    // 完整写法
+    // $route: {
+    //   handler(newVal, oldVal) {},
+    //   deep: false, // 是否监听该数据内部属性的变化，默认 false
+    //   // 简写中不会坚硬
+    //   immediate: false, // 是否立即执行一次 handler，默认 false
+    // },
   },
 };
 </script>
@@ -104,6 +145,8 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
+    overflow: auto;
+    scroll-behavior: smooth;
     // background-color: rgb(144, 239, 100);
     .article-item {
       width: 100%;
@@ -112,9 +155,8 @@ export default {
       margin-bottom: 20px;
       padding: 10px;
       border-bottom: 1px solid #ccc;
-      &:hover{
+      &:hover {
         background-color: rgb(250, 249, 249);
-        
       }
       .thumb {
         width: 150px;
@@ -122,6 +164,7 @@ export default {
         padding-left: 5px;
         padding-right: 20px;
         padding-top: 5px;
+        flex-shrink: 0;
         img {
           width: 100%;
           height: 100%;
@@ -135,7 +178,7 @@ export default {
           margin: 0;
           padding: 5px 0;
           cursor: pointer;
-          &:hover{
+          &:hover {
             color: #f40;
           }
         }
@@ -152,12 +195,6 @@ export default {
         }
       }
     }
-  }
-  .pager {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 </style>
