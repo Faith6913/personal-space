@@ -51,7 +51,7 @@ export async function postComment(commentInfo) {
 }
 
 /**
- *
+ * 分页获取评论
  * @param {Number} page
  * @param {Number} limit
  * @param {Number} bolgId
@@ -61,14 +61,14 @@ export async function postComment(commentInfo) {
 export async function getComments(
   page = 1,
   limit = 10,
-  bolgId = -1,
+  blogId = -1,
   keyWord = ""
 ) {
   return await request.get(`/api/comment`, {
     params: {
       page,
       limit,
-      bolgId,
+      blogId,
       keyWord,
     },
   });

@@ -35,5 +35,24 @@ new Vue({
 //   console.log(resp);
 // });
 
-// 测试新封装的API接口 
+// 测试新封装的API接口
 import * as blogAPI from "@/api/blog.js";
+blogAPI
+  .getBlogContentById("4B15914c-eFD5-048B-B43c-AE4c31bC9E97")
+  .then((resp) => {
+    console.log("博客文章详情: ", resp);
+  });
+
+blogAPI
+  .postComment({
+    nickname: "我的昵称",
+    content: "这是一个测试评论的文本",
+    blogId: 1,
+  })
+  .then((resp) => {
+    console.log("提交评论", resp);
+  });
+
+blogAPI.getComments("123123").then((resp) => {
+  console.log("获取的评论:", resp);
+});
