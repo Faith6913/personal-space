@@ -29,3 +29,11 @@ new Vue({
 // getBlogs(2, 20, 2).then((resp)=>{
 //   console.log("博客",resp);
 // });
+// import { getBlogContentById } from "@/api/blog.js";
+// console.log("-------  Test  --------");
+// getBlogContentById('4B15914c-eFD5-048B-B43c-AE4c31bC9E97').then((resp) => {
+//   console.log(resp);
+// });
+
+// 测试新封装的API接口 
+import * as blogAPI from "@/api/blog.js";

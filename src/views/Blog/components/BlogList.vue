@@ -59,7 +59,6 @@ export default {
       const categoryId = +this.$route.params.categoryId || -1;
       const page = +this.$route.query.page || 1;
       const limit = +this.$route.query.limit || 10;
-      // console.log(categoryId, page, limit);
       return {
         categoryId,
         page,
@@ -113,19 +112,8 @@ export default {
     async $route() {
       this.isLoading = true;
       this.data = [];
-      // console.log(this.$refs.container.scrollTop);
       this.data = await this.fetchData();
       this.isLoading = !this.isLoading;
-      // this.filterArray = this.data.rows.filter((item) => {
-      //   // if (this.routeInfo.categoryId === -1) {
-      //   //   return true;
-      //   // } else {
-      //   //   return item.category.id === this.routerInfo.categoryId;
-      //   // }
-      //   console.log(this.routeInfo.categoryId, item.category.id);
-      //   // return this.routeInfo.categoryId === item.category.id;
-      // });
-      // this.filterArray = [];
     },
     // 完整写法
     // $route: {
