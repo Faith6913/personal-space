@@ -164,25 +164,28 @@ Mock.mock("/api/comment", "post", {
 }
 */
 
-Mock.mock(/^\/api\/comment\?.*$/, "get", {
-  code: 0,
-  msg: "",
-  data: {
-    total: 786,
-    rows: [
-      {
-        "id|+1": 1,
-        nickname: "@cname",
-        content: "@cparagraph(3,5)",
-        blog: {
-          id: "@guid",
-          title: "@ctitle",
+Mock.mock(/^\/api\/comment\?.*$/, "get", function (options) {
+  const query = qs.parse(options.url);
+  return Mock.mock({
+    code: 0,
+    msg: "",
+    "data|10-20": {
+      "total|50-600": 0,
+      [`rows|${query.limit || 10}`]: [
+        {
+          "id|+1": 1,
+          nickname: "@cname",
+          content: "@cparagraph(3,5)",
+          blog: {
+            id: "@guid",
+            title: "@ctitle",
+          },
+          createDate: "@date",
+          avatar: "@image('100x100', '#4A7BF7', 'Avatar')",
         },
-        createDate: "@date",
-        avatar: "@image('100x100', '#4A7BF7', 'Avatar')",
-      },
-    ],
-  },
+      ],
+    },
+  });
 });
 
 /* 
