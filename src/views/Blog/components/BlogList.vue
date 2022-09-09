@@ -3,20 +3,46 @@
     <ul class="article-preview-container" ref="container">
       <li class="article-item" v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
-          <a href="">
+          <RouterLink
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                id: item.id,
+              },
+            }"
+          >
             <img :src="item.thumb" :alt="item.title" :title="item.title" />
-          </a>
+          </RouterLink>
         </div>
 
         <div class="main">
-          <a href="">
+          <RouterLink
+            :to="{
+              name: 'BlogDetail',
+              params: {
+                id: item.id,
+              },
+            }"
+          >
             <h2 class="title">{{ item.title }}</h2>
-          </a>
+          </RouterLink>
           <div class="info">
             <span>日期: {{ formatDate(item.createDate) }}</span>
             <span>浏览: {{ item.scanNumber }}</span>
             <span>评论: {{ item.commentNumber }}</span>
-            <a href="">分类: {{ item.category.id }}</a>
+            <a href="" @click="handlerClick($event, item.category.id)"
+              >分类: {{ item.category.id }}</a
+            >
+            <RouterLink
+              :to="{
+                name: 'CategoryBlog',
+                params: {
+                  categoryId: item.category.id,
+                },
+              }"
+            >
+              分类: {{ item.category.id }}
+            </RouterLink>
           </div>
           <p class="desp">
             {{ item.description }}
@@ -102,6 +128,21 @@ export default {
       return resp;
     },
     formatDate,
+    // 下列代码实现分类超链接的点击不跳转页面只跳转路由，但是可以用<RouterLink />实现
+    // handlerClick(e, categoryId) {
+    //   e.preventDefault();
+    //   const query = {
+    //     page: +this.$route.query.page || 1,
+    //     limit: +this.$route.query.limit || 10,
+    //   };
+    //   this.$router.push({
+    //     name: "CategoryBlog",
+    //     query,
+    //     params: {
+    //       categoryId: categoryId,
+    //     },
+    //   });
+    // },
   },
   watch: {
     // 观察this.data
