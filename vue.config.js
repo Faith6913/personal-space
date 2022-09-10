@@ -9,7 +9,9 @@ module.exports = defineConfig({
       "/images": {
         target: "https://cdn.leoh.io",
       },
-
+      "/infoplus": {
+        target: "https://ehall.njtech.edu.cn",
+      },
     },
   },
 });
