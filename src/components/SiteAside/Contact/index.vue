@@ -47,13 +47,14 @@ export default {
   background-color: transparent;
   display: flex;
   flex-direction: column;
+  font-size: 13px;
   a {
     color: @lightWords;
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    padding-left: 15px;
+    padding-left: 35px;
     margin: 5px 0;
     cursor: pointer;
     position: relative;

@@ -92,7 +92,13 @@ Mock.mock(/^\/api\/blog\/[^\/]*$/, "get", function (options) {
       ],
       htmlContent: `<html>
       <h4>这是一个html元素文本</h4>
-      <code></code>
+      <code>
+        const a = 1;
+        console.log(a);
+        async function fun(){
+          return a;
+        }
+      </code>
       </html>`,
     },
   });

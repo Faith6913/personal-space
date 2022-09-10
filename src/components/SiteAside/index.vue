@@ -56,8 +56,8 @@ export default {
   p{
     margin: 40px auto;
     text-align: center;
-    font-size: 14px;
-    color: @gray;
+    font-size: 12px;
+    color: darken(@gray, 45%);
   }
 }
 </style>
