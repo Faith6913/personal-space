@@ -34,7 +34,7 @@ import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
 import fetchAPI from "@/mixins/fetchData";
 export default {
-  mixins:[fetchAPI],
+  mixins:[fetchAPI([])],
   components: {
     CarouselItem,
     Icon,
