@@ -10,7 +10,7 @@ import RightList from "./RightList.vue";
 import fetchAPI from "@/mixins/fetchData";
 import { getBlogtypes } from "@/api/blog.js";
 export default {
-  mixins: [fetchAPI],
+  mixins: [fetchAPI([])],
   components: {
     RightList,
   },

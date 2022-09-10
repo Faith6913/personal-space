@@ -30,9 +30,6 @@
             <span>日期: {{ formatDate(item.createDate) }}</span>
             <span>浏览: {{ item.scanNumber }}</span>
             <span>评论: {{ item.commentNumber }}</span>
-            <a href="" @click="handlerClick($event, item.category.id)"
-              >分类: {{ item.category.id }}</a
-            >
             <RouterLink
               :to="{
                 name: 'CategoryBlog',
@@ -70,7 +67,7 @@ import fetchAPI from "@/mixins/fetchData";
 import Pager from "@/components/Pager";
 import { formatDate } from "@/utils";
 export default {
-  mixins: [fetchAPI],
+  mixins: [fetchAPI([])],
   components: {
     Pager,
   },
@@ -228,7 +225,6 @@ export default {
           }
         }
         .desp {
-          cursor: pointer;
           text-indent: 2em;
         }
       }

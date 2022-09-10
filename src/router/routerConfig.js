@@ -3,7 +3,7 @@ import Blog from "@/views/Blog";
 import About from "@/views/About";
 import Project from "@/views/Project";
 import Message from "@/views/Message";
-import BlogDetail from "@/views/Blog/BlogDetail";
+import BlogDetail from "@/views/Blog/Detail";
 const routes = [
   // 路由规则
   // 当匹配到路径 / 时，渲染 Home 组件

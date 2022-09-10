@@ -54,7 +54,8 @@ Mock.mock(/^\/api\/blog\/[^\/]*$/, "get", function (options) {
     msg: "",
     data: {
       id: "@guid",
-      "title|1": "@ctitle(5, 9)",
+      // "title|1": "@ctitle(5, 9)",
+      "title|1": "CORS跨域解决方案详解",
       category: {
         "id|+1": 0,
         name: "分类@id",
@@ -64,32 +65,35 @@ Mock.mock(/^\/api\/blog\/[^\/]*$/, "get", function (options) {
       description: "@cparagraph",
       toc: [
         // 博客章节目录
-        { name: "章节1", anchor: "title-1" },
+        { name: "CORS跨域概述", anchor: "title-1" },
         {
-          name: "章节2",
+          name: "跨域问题解决办法",
           anchor: "title-2",
           children: [
-            { name: "章节2-1", anchor: "title-2-1" },
-            { name: "章节2-2", anchor: "title-2-2" },
+            { name: "前端方案", anchor: "title-2-1" },
+            { name: "后端方案", anchor: "title-2-2" },
           ],
         },
         {
-          name: "章节3",
+          name: "简单请求",
           anchor: "title-3",
           children: [
-            { name: "章节3-1", anchor: "title-3-1" },
-            { name: "章节3-2", anchor: "title-3-2" },
-            { name: "章节3-3", anchor: "title-3-3" },
-            { name: "章节3-4", anchor: "title-3-4" },
+            { name: "简单请求的判定", anchor: "title-3-1" },
+            { name: "简单请求的交互规范", anchor: "title-3-2" },
           ],
         },
+        { name: "附带身份凭证的请求", anchor: "title-1" },
+        { name: "一个额外的补充", anchor: "title-1" },
       ],
       createDate: "@date",
       "thumb|1": [
         Mock.Random.image("300x250", "#000", "#fff", "Random Image"),
         null,
       ],
-      htmlContent: "....",
+      htmlContent: `<html>
+      <h4>这是一个html元素文本</h4>
+      <code></code>
+      </html>`,
     },
   });
 });
