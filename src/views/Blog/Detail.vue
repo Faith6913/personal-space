@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <div class="main-container" v-loading="isLoading">
-      <BlogDetail :blog="data" v-show="!isLoading"/>
-      <BlogComment v-show="!isLoading" title="评论" subtitle="(72)"/>
+      <BlogDetail :blog="data" v-if="!isLoading"/>
+      <BlogComment v-if="!isLoading"/>
     </div>
     <template #right class="rightList">
       <BlogToc
@@ -20,7 +20,7 @@ import BlogDetail from "./components/BlogDetail.vue";
 import BlogToc from "./components/BlogToc.vue";
 import fetchAPI from "@/mixins/fetchData";
 import { getBlogContentById } from "@/api/blog.js";
-import BlogComment from "@/components/MessageArea";
+import BlogComment from "./components/BlogComment";
 export default {
   mixins: [fetchAPI({})],
   components: {

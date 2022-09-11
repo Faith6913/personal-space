@@ -6,7 +6,7 @@
         class="avatar"
         :size="120"
       />
-      <h1 class="title">zhiHao's Blog</h1>
+      <h1 class="title">-----------</h1>
       <Menu class="menu" />
     </div>
     <div class="down">
