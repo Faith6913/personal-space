@@ -6,7 +6,7 @@
         class="avatar"
         :size="120"
       />
-      <h1 class="title">zhiHao's Blog</h1>
+      <h1 class="title">-----------</h1>
       <Menu class="menu" />
     </div>
     <div class="down">
@@ -56,8 +56,8 @@ export default {
   p{
     margin: 40px auto;
     text-align: center;
-    font-size: 14px;
-    color: @gray;
+    font-size: 12px;
+    color: darken(@gray, 45%);
   }
 }
 </style>

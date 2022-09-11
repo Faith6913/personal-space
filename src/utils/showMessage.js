@@ -7,6 +7,7 @@ import Icon from "@/components/Icon";
  * @param {String} type 消息类型 info error success warn
  * @param {Number} duration 多久消失
  * @param {HTMLElement} container 容器
+ * @param {Function} callback 回调函数，可以选择传递，也可不传递
  */
 export default function showMessage(options = {}) {
   const content = options.content || "";
@@ -38,7 +39,7 @@ export default function showMessage(options = {}) {
     div.style.transform = "translate(-50%, -50%) translateY(-10px)";
     div.addEventListener("transitionend", function () {
         div.remove();
-        // 如果又回调函数，就自动运行回调函数
+        // 如果有回调函数，就自动运行回调函数
         options.callback && options.callback();
     });
   }, duration);

@@ -92,7 +92,39 @@ Mock.mock(/^\/api\/blog\/[^\/]*$/, "get", function (options) {
       ],
       htmlContent: `<html>
       <h4>这是一个html元素文本</h4>
-      <code></code>
+      <code>
+        const a = 1;
+        console.log(a);
+        async function fun(){
+          return a;
+        }
+      </code>
+      <code>
+        const a = 1;
+        console.log(a);
+        async function fun(){
+          return a;
+        }
+      </code>
+      <code>
+        const a = 1;
+        console.log(a);
+        async function fun(){
+          return a;
+        }
+      </code>
+
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
+      <h4>这是一个html元素文本</h4>
       </html>`,
     },
   });
@@ -146,7 +178,7 @@ Mock.mock("/api/comment", "post", {
       id: "@guid",
       title: "@ctitle",
     },
-    createDate: "@date",
+    createDate: "@datetime()",
     avatar: "@image('100x100', '#4A7BF7', 'Avatar')",
   },
 });
@@ -184,8 +216,8 @@ Mock.mock(/^\/api\/comment\?.*$/, "get", function (options) {
             id: "@guid",
             title: "@ctitle",
           },
-          createDate: "@date",
-          avatar: "@image('100x100', '#4A7BF7', 'Avatar')",
+          createDate: "@datetime()",
+          avatar: "@image('100x100', '#6b9eee', 'Avatar')",
         },
       ],
     },

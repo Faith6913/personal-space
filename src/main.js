@@ -5,7 +5,7 @@ import "./styles/var.less";
 import "./styles/global.less";
 import { showMessage } from "@/utils";
 Vue.config.productionTip = false;
-Vue.prototype.showMessage = showMessage;
+Vue.prototype.$showMessage = showMessage;
 
 // 全局注册自定义指令
 import vloading from "@/directives/loading";
@@ -56,7 +56,5 @@ new Vue({
 // blogAPI.getComments("123123").then((resp) => {
 //   console.log("获取的评论:", resp);
 // });
-
-
 
 
