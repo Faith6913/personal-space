@@ -3,6 +3,7 @@
     class="data-form-container"
     @submit.prevent="handlerSubmit"
     ref="container"
+    id="data-form-container"
   >
     <div class="form-item">
       <div class="nickname">

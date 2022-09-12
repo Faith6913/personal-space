@@ -44,5 +44,6 @@ export default {
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
+  scroll-behavior: smooth;
 }
 </style>

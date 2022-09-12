@@ -14,7 +14,6 @@
 import MessageArea from "@/components/MessageArea";
 import { getComments, postComment } from "@/api/blog";
 import fetchAPI from "@/mixins/fetchData";
-import formatDate from "@/utils/formatDate";
 export default {
   mixins: [fetchAPI({})],
   data() {

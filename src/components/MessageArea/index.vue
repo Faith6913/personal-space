@@ -1,6 +1,6 @@
 <template>
   <div class="blog-comment-container">
-    <DataForm @submit="handlerSubmit" />
+    <DataForm @submit="handlerSubmit"/>
     <h3>
       {{ title }}
       <span>{{ subtitle }}</span>
