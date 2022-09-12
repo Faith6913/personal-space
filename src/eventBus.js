@@ -12,28 +12,28 @@
    	{'event2': [ handler1 ]},
    ]
 */
-const $listeners = [];
+const listeners = [];
 export default {
   // 开启某个事件的监听
   $on(eventName, handler) {
-    if (!$listeners[eventName]) {
-      $listeners[eventName] = new Set();
+    if (!listeners[eventName]) {
+      listeners[eventName] = new Set();
     }
-    $listeners[eventName].add(handler);
+    listeners[eventName].add(handler);
   },
   // 取消某个事件的监听
   $off(eventName, handler) {
-    if (!$listeners[eventName]) {
+    if (!listeners[eventName]) {
       return;
     }
-    $listeners[eventName].delete(handler);
+    listeners[eventName].delete(handler);
   },
   // 触发某个事件（可以传参），通过剩余参数接受
   $emit(eventName, ...args) {
-    if (!$listeners[eventName]) {
+    if (!listeners[eventName]) {
       return;
     }
-    $listeners[eventName].forEach((handler) => {
+    listeners[eventName].forEach((handler) => {
       handler(...args);
     });
   },

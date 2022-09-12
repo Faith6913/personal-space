@@ -7,7 +7,8 @@
       <span v-if="item.aside" class="count" @click="handlerClick(item)">{{
         item.aside
       }}</span>
-      <RightList :list="item.children" @select="handlerClick(item)" />
+
+      <RightList :list="item.children"  @select="handlerClick"/>
     </li>
   </ul>
 </template>
@@ -25,6 +26,7 @@ export default {
   },
   methods: {
     handlerClick(item) {
+      console.log("RightList", item.anchor);
       this.$emit("select", item);
     },
   },
