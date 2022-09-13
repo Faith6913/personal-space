@@ -1,6 +1,6 @@
 import Vue from "vue";
 /**
- * 根据组件和必备的属性返回一个真是的DOM
+ * 根据组件和必备的属性返回一个真实的DOM
  * @param {Vue Object} comp
  * @param {Object} props
  */

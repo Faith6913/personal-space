@@ -1,13 +1,14 @@
 <template>
-  <div class="blog-toc-container">
+  <div class="blog-toc-container" ref="container">
     <h2>目录</h2>
     <RightList :list="tocWithSelected" @select="handlerSelect" />
-    <button @click="setSelect">更改</button>
   </div>
 </template>
 
 <script>
 import RightList from "./RightList";
+import eventBus from "@/eventBus";
+import { debounce } from "@/utils";
 export default {
   props: {
     toc: {
@@ -69,11 +70,28 @@ export default {
     },
     // 写一个方法，每次调用的时候就能够设置成正确的状态
     setSelect() {
-      console.log("设置成正确的效果");
-
-      location.hash = this.selected;
+      // const browserTop = this.doms[0].parentElement.parentElement.parentElement.getBoundingClientRect();
+      // console.log(browserTop);
+      this.selected = location.hash;
+      this.doms.forEach((dom) => {
+        let domTop = dom.getBoundingClientRect().top;
+        if (domTop <= 120) {
+          // console.log(dom);
+          // console.log(dom.getAttribute("id"));
+          this.selected = dom.getAttribute("id");
+        } else if (domTop > 100) {
+          return;
+        }
+      });
     },
   },
+  created() {
+    this.debounceSelect = debounce(this.setSelect, 300);
+    eventBus.$on("blogScroll", this.debounceSelect);
+  },
+  destroyed(){
+    eventBus.$off("blogScroll", this.debounceSelect);
+  }
 };
 </script>
 
@@ -85,6 +103,7 @@ export default {
   position: relative;
   height: 100%;
   overflow-y: auto;
+  transition: 100ms;
   h2 {
     font-size: 20px;
     font-weight: bold;

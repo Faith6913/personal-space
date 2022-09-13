@@ -57,7 +57,6 @@ new Vue({
 //   console.log("获取的评论:", resp);
 // });
 
-
 // 测试事件总线接口
 // import eventBus from "./eventBus";
 
@@ -76,3 +75,20 @@ new Vue({
 // window.eventBus = eventBus;
 // window.handler1 = handler1;
 // window.handler2 = handler2;
+
+// 测试函数防抖功能
+// import debounce from "@/utils/debounce";
+// const newSum = debounce(sum, 1000);
+// window.newSum = newSum;
+// function sum(a, b) {
+//   console.log(a + b);
+// }
+// newSum(43, 34);
+// newSum(43, 34);
+// newSum(43, 34);
+// newSum(43, 34);
+// newSum(43, 34);
+// newSum(43, 34);
+// newSum(4233, 34);
+// newSum(43, 34);
+// newSum(43, 34);

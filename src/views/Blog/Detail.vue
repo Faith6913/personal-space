@@ -1,8 +1,8 @@
 <template>
   <Layout>
-    <div class="main-container" v-loading="isLoading">
-      <BlogDetail :blog="data" v-if="!isLoading"/>
-      <BlogComment v-if="!isLoading"/>
+    <div class="main-container" v-loading="isLoading" ref="container">
+      <BlogDetail :blog="data" v-if="!isLoading" />
+      <BlogComment v-if="!isLoading" />
     </div>
     <template #right class="rightList">
       <BlogToc
@@ -21,6 +21,7 @@ import BlogToc from "./components/BlogToc.vue";
 import fetchAPI from "@/mixins/fetchData";
 import { getBlogContentById } from "@/api/blog.js";
 import BlogComment from "./components/BlogComment";
+import eventBus from "@/eventBus.js";
 export default {
   mixins: [fetchAPI({})],
   components: {
@@ -34,6 +35,11 @@ export default {
       const blog = await getBlogContentById(this.$route.params.id);
       return blog;
     },
+  },
+  mounted() {
+    this.$refs.container.addEventListener("scroll", () => {
+      eventBus.$emit("blogScroll");
+    });
   },
 };
 </script>
