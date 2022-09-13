@@ -41,6 +41,13 @@ export default {
       eventBus.$emit("blogScroll");
     });
   },
+  updated() {
+    const hash = location.hash;
+    location.hash = "";
+    setTimeout(() => {
+      location.hash = hash;
+    }, 50);
+  },
 };
 </script>
 

@@ -6,7 +6,15 @@
       <span>浏览: {{ blog.scanNumber }}</span>
       <a href="#data-form-container">评论: {{ blog.commentNumber }}</a>
       <!-- 因为blog属性是在updated的hook上执行的，因此会出现undefined的情况，所以在此添加一个判断排除默认情况 -->
-      <a href="">分类: {{ blog.category ? blog.category.id : 0 }}</a>
+      <RouterLink
+        :to="{
+          name: 'CategoryBlog',
+          params: {
+            categoryId: blog.category.id,
+          },
+        }"
+        >分类: {{ blog.category ? blog.category.id : 0 }}</RouterLink
+      >
     </div>
     <div v-html="blog.htmlContent" class="markdown-body"></div>
   </div>
@@ -22,7 +30,6 @@ export default {
       required: true,
     },
   },
-
 };
 </script>
 
