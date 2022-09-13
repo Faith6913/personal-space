@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     handlerClick(item) {
-      console.log("RightList", item.anchor);
       this.$emit("select", item);
     },
   },

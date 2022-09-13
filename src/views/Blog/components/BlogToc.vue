@@ -1,7 +1,8 @@
 <template>
   <div class="blog-toc-container">
     <h2>目录</h2>
-    <RightList :list="toc" @select="handlerSelect" />
+    <RightList :list="tocWithSelected" @select="handlerSelect" />
+    <button @click="setSelect">更改</button>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ export default {
   },
   data() {
     return {
-      selected: "article-md-title-3",
+      selected: "",
     };
   },
   components: {
@@ -42,18 +43,36 @@ export default {
 
       return getToc(this.toc);
     },
-    doms() {},
+    // 根据toc得到它们对应的元素数组
+    doms() {
+      const domsArray = [];
+      function getDomsByTocArray(toc) {
+        toc.forEach((item) => {
+          domsArray.push(document.querySelector(`#${item.anchor}`));
+          if (item.children) {
+            getDomsByTocArray(item.children);
+            // item.children.forEach((e) => {
+            //   domsArray.push(document.querySelector(`#${e.anchor}`));
+            // });
+          }
+        });
+        return domsArray;
+      }
+      return getDomsByTocArray(this.toc);
+    },
   },
   methods: {
     handlerSelect(item) {
       // 这里处理选中的isSelect属性，不光有点击，还要和本组件的兄弟组件BlogDetail之间进行通信
-      console.log(item);
+      this.selected = item.anchor;
       location.hash = item.anchor;
     },
     // 写一个方法，每次调用的时候就能够设置成正确的状态
-    setSelect(){
+    setSelect() {
+      console.log("设置成正确的效果");
 
-    }
+      location.hash = this.selected;
+    },
   },
 };
 </script>
