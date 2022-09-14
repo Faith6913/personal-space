@@ -23,6 +23,7 @@ import { getBlogContentById } from "@/api/blog.js";
 import BlogComment from "./components/BlogComment";
 import eventBus from "@/eventBus.js";
 export default {
+  name: "Detail",
   mixins: [fetchAPI({})],
   components: {
     Layout,
@@ -35,14 +36,33 @@ export default {
       const blog = await getBlogContentById(this.$route.params.id);
       return blog;
     },
+    handlerToTop() {
+      // 回到顶部
+      if (!this.$refs.container) {
+        window.alert("未获取到dom元素");
+      }
+      this.$refs.container.scrollTop = 0;
+      location.hash = "";
+    },
   },
   mounted() {
     this.$refs.container.addEventListener("scroll", (e) => {
+      // 根据滚动的距离抛出回到顶部的事件
+      if (e.target.scrollTop >= 1000) {
+        eventBus.$emit("showToTop");
+      } else {
+        eventBus.$emit("hideToTop");
+      }
       eventBus.$emit("blogScroll");
-      if(Math.abs(e.target.scrollTop + e.target.clientHeight - e.target.scrollHeight) <= 1){
+      if (
+        Math.abs(
+          e.target.scrollTop + e.target.clientHeight - e.target.scrollHeight
+        ) <= 1
+      ) {
         eventBus.$emit("scrollToBottom");
       }
     });
+    eventBus.$on("toTop", this.handlerToTop);
   },
   updated() {
     const hash = location.hash;

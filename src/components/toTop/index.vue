@@ -1,11 +1,31 @@
 <template>
-  <div class="to-top-container">
-    Top
-  </div>
+  <div class="to-top-container" v-show="show" @click="handlerClick">Top</div>
 </template>
 
 <script>
-export default {};
+import eventBus from "@/eventBus";
+export default {
+  data() {
+    return {
+      show: true,
+    };
+  },
+  methods: {
+    handlerClick() {
+      eventBus.$emit("toTop");
+    },
+    showButton() {
+      this.show = true;
+    },
+    hideButton() {
+      this.show = false;
+    },
+  },
+  mounted() {
+    eventBus.$on("showToTop", this.showButton);
+    eventBus.$on("hideToTop", this.hideButton);
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -22,5 +42,6 @@ export default {};
   cursor: pointer;
   text-align: center;
   line-height: 50px;
+  color: #fff;
 }
 </style>
