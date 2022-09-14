@@ -1,3 +1,7 @@
+/**
+ * 当某个区域进行滚动的时候，这里混入一些相关的 "回到顶部" 配置
+ * 需要将进行操作的dom设置属性 ref="container"
+ */
 import eventBus from "@/eventBus.js";
 export default {
   methods: {
