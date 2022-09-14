@@ -54,6 +54,7 @@ export default {
   width: 100%;
   .loading-conatiner {
     position: relative;
+    padding-bottom: 20px;
   }
 }
 </style>

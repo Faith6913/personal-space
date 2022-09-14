@@ -14,6 +14,7 @@
 import MessageArea from "@/components/MessageArea";
 import { getComments, postComment } from "@/api/blog";
 import fetchAPI from "@/mixins/fetchData";
+import eventBus from "@/eventBus.js";
 export default {
   mixins: [fetchAPI({})],
   data() {
@@ -28,6 +29,22 @@ export default {
   methods: {
     async fetchData() {
       return await getComments(this.page, this.limit, this.$route.params.id);
+    },
+    // 给出一个获取更多的函数封装，便于后续调用
+    async fetchMore() {
+      this.page++;
+      this.isLoading = true;
+      const resp = await getComments(
+        this.page,
+        this.limit,
+        this.$route.params.id
+      );
+      this.data.total = resp.total;
+      if (!this.data.rows) {
+        return;
+      }
+      this.data.rows = this.data.rows.concat(resp.rows);
+      this.isLoading = false;
     },
     async handlerSubmit(nickname, content, callback) {
       const resp = await postComment({
@@ -61,6 +78,10 @@ export default {
         nickname:"邹静"
       */
     },
+  },
+  // 挂载的时候注册一个滚动监听事件
+  created() {
+    eventBus.$on("scrollToBottom", this.fetchMore);
   },
 };
 </script>

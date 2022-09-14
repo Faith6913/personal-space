@@ -74,6 +74,9 @@ export default {
       // console.log(browserTop);
       this.selected = location.hash;
       this.doms.forEach((dom) => {
+        if (!dom) {
+          return;
+        }
         let domTop = dom.getBoundingClientRect().top;
         if (domTop <= 120) {
           // console.log(dom);
@@ -89,9 +92,9 @@ export default {
     this.debounceSelect = debounce(this.setSelect, 300);
     eventBus.$on("blogScroll", this.debounceSelect);
   },
-  destroyed(){
+  destroyed() {
     eventBus.$off("blogScroll", this.debounceSelect);
-  }
+  },
 };
 </script>
 

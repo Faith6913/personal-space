@@ -37,8 +37,11 @@ export default {
     },
   },
   mounted() {
-    this.$refs.container.addEventListener("scroll", () => {
+    this.$refs.container.addEventListener("scroll", (e) => {
       eventBus.$emit("blogScroll");
+      if(Math.abs(e.target.scrollTop + e.target.clientHeight - e.target.scrollHeight) <= 1){
+        eventBus.$emit("scrollToBottom");
+      }
     });
   },
   updated() {

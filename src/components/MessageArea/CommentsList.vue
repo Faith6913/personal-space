@@ -1,10 +1,7 @@
 <template>
   <ul class="comments-list-container">
     <li class="item" v-for="(item, i) in list" :key="i">
-      <Avatar
-        :url="item.avatar"
-        :size="44"
-      />
+      <Avatar :url="item.avatar" :size="44" />
       <div class="data">
         <div class="nickname">{{ item.nickname }}</div>
         <div class="content">
@@ -38,6 +35,7 @@ export default {
 .comments-list-container {
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 50px;
   // background-color: darken(rgb(157, 157, 238), 10%);
   .item {
     width: 100%;
