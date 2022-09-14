@@ -19,12 +19,15 @@ import Layout from "@/components/Layout";
 import BlogDetail from "./components/BlogDetail.vue";
 import BlogToc from "./components/BlogToc.vue";
 import fetchAPI from "@/mixins/fetchData";
+import toTopAPI from "@/mixins/toTop";
 import { getBlogContentById } from "@/api/blog.js";
 import BlogComment from "./components/BlogComment";
-import eventBus from "@/eventBus.js";
+// import eventBus from "@/eventBus.js";
 export default {
   name: "Detail",
-  mixins: [fetchAPI({})],
+  // 混合，第一个是获取数据的一些代码
+  // 第二个是给有滚动的元素添加回到顶部效果，原先写的代码就可以删除了
+  mixins: [fetchAPI({}), toTopAPI],
   components: {
     Layout,
     BlogToc,
@@ -36,37 +39,6 @@ export default {
       const blog = await getBlogContentById(this.$route.params.id);
       return blog;
     },
-    handlerToTop() {
-      // 回到顶部
-      if (!this.$refs.container) {
-        window.alert("未获取到dom元素");
-      }
-      this.$refs.container.scrollTop = 0;
-      location.hash = "";
-    },
-  },
-  mounted() {
-    this.$refs.container.addEventListener("scroll", (e) => {
-      // 根据滚动的距离抛出回到顶部的事件
-      if (e.target.scrollTop >= 1000) {
-        eventBus.$emit("showToTop");
-      } else {
-        eventBus.$emit("hideToTop");
-      }
-      eventBus.$emit("blogScroll");
-      if (
-        Math.abs(
-          e.target.scrollTop + e.target.clientHeight - e.target.scrollHeight
-        ) <= 1
-      ) {
-        eventBus.$emit("scrollToBottom");
-      }
-    });
-    eventBus.$on("toTop", this.handlerToTop);
-  },
-  destroyed() {
-    eventBus.$off("toTop", this.handlerToTop);
-    eventBus.$emit("hideToTop");
   },
   updated() {
     const hash = location.hash;

@@ -2,9 +2,9 @@
   <div
     class="blog-list-container"
     v-loading="isLoading"
-    ref="blogListContainer"
+    ref="container"
   >
-    <ul class="article-preview-container" ref="container">
+    <ul class="article-preview-container">
       <li class="article-item" v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
           <RouterLink
@@ -68,11 +68,11 @@
 <script>
 import { getBlogs } from "@/api/blog.js";
 import fetchAPI from "@/mixins/fetchData";
+import toTopAPI from "@/mixins/toTop";
 import Pager from "@/components/Pager";
 import { formatDate } from "@/utils";
-import eventBus from "@/eventBus";
 export default {
-  mixins: [fetchAPI([])],
+  mixins: [fetchAPI([]), toTopAPI],
   components: {
     Pager,
   },
@@ -96,7 +96,6 @@ export default {
   },
   methods: {
     handlePageChange(newPage) {
-      console.log(newPage);
       const query = {
         page: newPage,
         limit: this.routeInfo.limit,
@@ -130,12 +129,7 @@ export default {
       return resp;
     },
     formatDate,
-    handlerToTop() {
-      if (!this.$refs.blogListContainer) {
-        window.alert("未获取到dom元素");
-      }
-      this.$refs.blogListContainer.scrollTop = 0;
-    },
+
     // 下列代码实现分类超链接的点击不跳转页面只跳转路由，但是可以用<RouterLink />实现
     // handlerClick(e, categoryId) {
     //   e.preventDefault();
@@ -171,21 +165,6 @@ export default {
     //   // 简写中不会坚硬
     //   immediate: false, // 是否立即执行一次 handler，默认 false
     // },
-  },
-  mounted() {
-    this.$refs.blogListContainer.addEventListener("scroll", (e) => {
-      // 根据滚动的距离抛出回到顶部的事件
-      if (e.target.scrollTop >= 300) {
-        eventBus.$emit("showToTop");
-      } else {
-        eventBus.$emit("hideToTop");
-      }
-    });
-    eventBus.$on("toTop", this.handlerToTop);
-  },
-  destroyed() {
-    eventBus.$off("toTop", this.handlerToTop);
-    eventBus.$emit("hideToTop");
   },
 };
 </script>
