@@ -1,5 +1,9 @@
 <template>
-  <div class="blog-list-container" v-loading="isLoading">
+  <div
+    class="blog-list-container"
+    v-loading="isLoading"
+    ref="blogListContainer"
+  >
     <ul class="article-preview-container" ref="container">
       <li class="article-item" v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
@@ -66,6 +70,7 @@ import { getBlogs } from "@/api/blog.js";
 import fetchAPI from "@/mixins/fetchData";
 import Pager from "@/components/Pager";
 import { formatDate } from "@/utils";
+import eventBus from "@/eventBus";
 export default {
   mixins: [fetchAPI([])],
   components: {
@@ -125,6 +130,12 @@ export default {
       return resp;
     },
     formatDate,
+    handlerToTop() {
+      if (!this.$refs.blogListContainer) {
+        window.alert("未获取到dom元素");
+      }
+      this.$refs.blogListContainer.scrollTop = 0;
+    },
     // 下列代码实现分类超链接的点击不跳转页面只跳转路由，但是可以用<RouterLink />实现
     // handlerClick(e, categoryId) {
     //   e.preventDefault();
@@ -161,6 +172,21 @@ export default {
     //   immediate: false, // 是否立即执行一次 handler，默认 false
     // },
   },
+  mounted() {
+    this.$refs.blogListContainer.addEventListener("scroll", (e) => {
+      // 根据滚动的距离抛出回到顶部的事件
+      if (e.target.scrollTop >= 300) {
+        eventBus.$emit("showToTop");
+      } else {
+        eventBus.$emit("hideToTop");
+      }
+    });
+    eventBus.$on("toTop", this.handlerToTop);
+  },
+  destroyed() {
+    eventBus.$off("toTop", this.handlerToTop);
+    eventBus.$emit("hideToTop");
+  },
 };
 </script>
 
@@ -173,6 +199,7 @@ export default {
   height: 100%;
   position: relative;
   overflow-y: scroll;
+  scroll-behavior: smooth;
   // background-color: rgb(227, 182, 182);
   .article-preview-container {
     width: 90%;

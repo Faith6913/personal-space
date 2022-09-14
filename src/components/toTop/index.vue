@@ -7,7 +7,7 @@ import eventBus from "@/eventBus";
 export default {
   data() {
     return {
-      show: true,
+      show: false,
     };
   },
   methods: {

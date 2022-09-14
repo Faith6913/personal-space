@@ -64,6 +64,10 @@ export default {
     });
     eventBus.$on("toTop", this.handlerToTop);
   },
+  destroyed() {
+    eventBus.$off("toTop", this.handlerToTop);
+    eventBus.$emit("hideToTop");
+  },
   updated() {
     const hash = location.hash;
     location.hash = "";

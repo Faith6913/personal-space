@@ -89,6 +89,9 @@ export default {
   created() {
     eventBus.$on("scrollToBottom", this.fetchMore);
   },
+  destroyed() {
+    eventBus.$off("scrollToBottom", this.fetchMore);
+  },
 };
 </script>
 
