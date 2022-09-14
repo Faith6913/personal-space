@@ -32,6 +32,9 @@ export default {
     },
     // 给出一个获取更多的函数封装，便于后续调用
     async fetchMore() {
+      if (this.data.rows.length >= this.data.total) {
+        return;
+      }
       this.page++;
       this.isLoading = true;
       const resp = await getComments(

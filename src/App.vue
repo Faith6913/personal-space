@@ -11,6 +11,7 @@
         <div class="right"></div>
       </template>
     </Layout>
+    <toTop />
   </div>
 </template>
 
@@ -18,12 +19,14 @@
 import Avatar from "./components/Avatar";
 import Layout from "./components/Layout";
 import SiteAside from "./components/SiteAside";
+import toTop from "./components/toTop";
 export default {
   name: "App",
   components: {
     Avatar,
     Layout,
     SiteAside,
+    toTop,
   },
 };
 </script>
