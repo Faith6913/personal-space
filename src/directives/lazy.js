@@ -18,7 +18,6 @@ function setImages() {
       imgObj.imgDom.getBoundingClientRect().bottom > 0 &&
       imgObj.imgDom.getBoundingClientRect().top < window.innerHeight
     ) {
-      console.log(imgObj.imgDom);
       imgObj.imgDom.setAttribute("src", imgObj.picUrl);
       imgObj.isResolved = true;
     }
