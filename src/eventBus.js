@@ -12,6 +12,16 @@
    	{'event2': [ handler1 ]},
    ]
 */
+/**
+ * 事件描述及使用方法
+ * [
+ *  {"scrollToBottom": []}     滚动条滑动到底部
+ *  {"showToTop": []},         显示'回到顶部'控件
+ *  {"hideToTop": []},         隐藏'回到顶部'控件
+ *  {"blogScroll": []},        博客滚动
+ *  {"toTop": []}              回到顶部
+ * ]
+ */
 const listeners = [];
 export default {
   // 开启某个事件的监听

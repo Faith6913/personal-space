@@ -71,6 +71,7 @@ import fetchAPI from "@/mixins/fetchData";
 import toTopAPI from "@/mixins/toTop";
 import Pager from "@/components/Pager";
 import { formatDate } from "@/utils";
+import eventBus from "@/eventBus.js";
 export default {
   mixins: [fetchAPI([]), toTopAPI],
   components: {
@@ -96,6 +97,7 @@ export default {
   },
   methods: {
     handlePageChange(newPage) {
+      eventBus.$emit("toTop");
       const query = {
         page: newPage,
         limit: this.routeInfo.limit,
@@ -154,7 +156,6 @@ export default {
     // 简洁写法
     async $route() {
       this.isLoading = true;
-      this.data = [];
       this.data = await this.fetchData();
       this.isLoading = !this.isLoading;
     },
