@@ -15,7 +15,8 @@
               },
             }"
           >
-            <img :src="item.thumb" :alt="item.title" :title="item.title" />
+            <!-- <img :src="item.thumb" :alt="item.title" :title="item.title" /> -->
+            <img v-lazy="item.thumb" :alt="item.title" :title="item.title" />
           </RouterLink>
         </div>
 

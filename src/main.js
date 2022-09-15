@@ -9,7 +9,9 @@ Vue.prototype.$showMessage = showMessage;
 
 // 全局注册自定义指令
 import vloading from "@/directives/loading";
-Vue.directive("loading", vloading);
+import vlazy from "@/directives/lazy";
+Vue.directive("loading", vloading);    // 加载中指令
+Vue.directive("lazy", vlazy);       // 图片懒加载指令
 
 // 引入路由模块
 import router from "./router/router.js";
