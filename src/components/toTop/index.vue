@@ -1,5 +1,5 @@
 <template>
-  <div class="to-top-container" v-show="show" @click="handlerClick">Top</div>
+  <div class="to-top-container" v-show="show" @click="handlerClick">顶部</div>
 </template>
 
 <script>

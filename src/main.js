@@ -4,14 +4,15 @@ import "./mock";
 import "./styles/var.less";
 import "./styles/global.less";
 import { showMessage } from "@/utils";
+import store from "./store";
 Vue.config.productionTip = false;
 Vue.prototype.$showMessage = showMessage;
 
 // 全局注册自定义指令
 import vloading from "@/directives/loading";
 import vlazy from "@/directives/lazy";
-Vue.directive("loading", vloading);    // 加载中指令
-Vue.directive("lazy", vlazy);       // 图片懒加载指令
+Vue.directive("loading", vloading); // 加载中指令
+Vue.directive("lazy", vlazy); // 图片懒加载指令
 
 // 引入路由模块
 import router from "./router/router.js";
@@ -19,6 +20,7 @@ import router from "./router/router.js";
 new Vue({
   // 在vue中注册路由
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
 
@@ -94,3 +96,9 @@ new Vue({
 // newSum(4233, 34);
 // newSum(43, 34);
 // newSum(43, 34);
+
+// 测试获取全局设置接口
+// import getSetting from "@/api/setting";
+// getSetting().then((resp) => {
+//   console.log(resp);
+// });
