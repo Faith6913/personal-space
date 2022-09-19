@@ -26,12 +26,10 @@ function setTitle() {
 }
 export default {
   setRouterTitle(title) {
-    console.log("设置路由标题", title);
     routerTitle = title;
     setTitle();
   },
   setSiteTitle(title) {
-    console.log("设置网站标题", siteTitle);
     siteTitle = title;
     setTitle();
   },

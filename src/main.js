@@ -104,3 +104,9 @@ new Vue({
 // getSetting().then((resp) => {
 //   console.log(resp);
 // });
+
+// 测试关于我的数据接口
+// import getAbout from "@/api/about";
+// getAbout().then((resp) => {
+//   console.log(resp);
+// });
