@@ -146,14 +146,15 @@ export default {
         letter-spacing: 2px;
         width: 300px;
         height: 25px;
-        border: 1px dashed @primary;
         border-radius: 5px;
         font-size: 12px;
+        border: 1px dashed lighten(@gray, 10%);
         &::placeholder {
           color: @gray;
         }
         &:focus {
           outline: none;
+          border: 1px dashed @primary;
         }
         &:disabled {
           cursor: not-allowed;
@@ -173,17 +174,18 @@ export default {
         width: 600px;
         height: 100px;
         resize: none;
-        padding-left: 10px;
+        padding: 10px;
         letter-spacing: 2px;
         margin-bottom: 30px;
-        border: 1px dashed @primary;
         border-radius: 5px;
         font-size: 13px;
+        border: 1px dashed lighten(@gray, 10%);
         &::placeholder {
           color: @gray;
         }
         &:focus {
           outline: none;
+          border: 1px dashed @primary;
         }
         &:disabled {
           cursor: not-allowed;
@@ -191,7 +193,7 @@ export default {
       }
       .tip {
         position: absolute;
-        right: 210px;
+        right: 200px;
         bottom: 38px;
         font-size: 10px;
         color: @gray;
