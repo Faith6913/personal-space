@@ -1,29 +1,25 @@
 <template>
   <div class="contact-container">
-    <a href="https://github.com/Faith6913" target="_blank">
+    <a :href="data.githubName" target="_blank">
       <Icon class="iconFont" type="github" />
-      <p>Faith6913</p>
+      <p>{{ data.githubName }}</p>
     </a>
     <a href="mailto:zhihao_2023@163.com" target="_blank">
       <Icon class="iconFont" type="mail" />
-      <p>zhihao_2023@163.com</p>
+      <p>{{ data.mail }}</p>
     </a>
-    <a
-      href="tencent://message/?Menu=yes&uin=1728935296&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45"
-      target="_blank"
-      class="qq"
-    >
+    <a :href="data.qqQrCode" target="_blank" class="qq">
       <Icon class="iconFont" type="qq" />
-      <p>1728935296</p>
+      <p>{{ data.qq }}</p>
       <div class="qr-code">
         <img src="@/assets/my-qq.png" alt="" />
       </div>
     </a>
     <a target="_blank">
       <Icon class="iconFont weiChat" type="weixin" />
-      <p>Liuzhihao_93</p>
+      <p>{{ data.weixin }}</p>
       <div class="qr-code">
-        <img src="@/assets/my-weichat.png" alt="" />
+        <img :src="data.weixinQrCode" alt="" />
       </div>
     </a>
   </div>
@@ -31,9 +27,13 @@
 
 <script>
 import Icon from "@/components/Icon";
+import { mapState } from "vuex";
 export default {
   components: {
     Icon,
+  },
+  computed: {
+    ...mapState("setting", ["data"]),
   },
 };
 </script>
@@ -78,8 +78,8 @@ export default {
         border-radius: 5px;
       }
     }
-    .iconFont{
-        font-size: 20px;
+    .iconFont {
+      font-size: 20px;
     }
     .weiChat {
       font-size: 24px;

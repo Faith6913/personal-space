@@ -1,13 +1,13 @@
 <template>
   <div class="sideaside-container">
     <div class="up">
-      <Avatar :url="avatarURL" class="avatar" :size="120" />
-      <h1 class="title">-----------</h1>
+      <Avatar :url="data.avatar || ''" class="avatar" :size="120"/>
+      <h1 class="title">{{ data.siteTitle }}</h1>
       <Menu class="menu" />
     </div>
     <div class="down">
       <Contact class="contact" />
-      <p>苏ICP备198372908号</p>
+      <p>{{ data.icp }}</p>
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ import Avatar from "@/components/Avatar";
 import Contact from "./Contact";
 import Menu from "./Menu";
 import avatar from "@/assets/1.jpg";
+import { mapState } from "vuex";
 export default {
   components: {
     Avatar,
@@ -28,6 +29,9 @@ export default {
     return {
       avatarURL: avatar,
     };
+  },
+  computed: {
+    ...mapState("setting", ["data"]),
   },
 };
 </script>
