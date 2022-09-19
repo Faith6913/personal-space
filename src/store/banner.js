@@ -15,10 +15,12 @@ export default {
   },
   actions: {
     async fetchBanner(ctx) {
-      ctx.commit("setLoading", true);
-      const resp = await getBanners();
-      ctx.commit("setData", resp);
-      ctx.commit("setLoading", false);
+      if (ctx.state.data.length === 0) {
+        ctx.commit("setLoading", true);
+        const resp = await getBanners();
+        ctx.commit("setData", resp);
+        ctx.commit("setLoading", false);
+      }
     },
   },
 };

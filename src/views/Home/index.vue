@@ -1,17 +1,17 @@
 <template>
-  <div v-loading="isLoading" class="home-container" @mousewheel="handlerScroll">
+  <div v-loading="loading" class="home-container" @mousewheel="handlerScroll">
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in data" :key="item.id">
         <CarouselItem :src="data" :_id="item.id" :curIndex="index" />
       </li>
     </ul>
 
-    <div class="icon icon-up" v-show="!isLoading && index !== 0" @click="prev">
+    <div class="icon icon-up" v-show="!loading && index !== 0" @click="prev">
       <Icon class="pericon" type="arrowUp" />
     </div>
     <div
       class="icon icon-down"
-      v-show="!isLoading && index !== data.length - 1"
+      v-show="!loading && index !== data.length - 1"
       @click="next"
     >
       <Icon class="pericon" type="arrowDown" />
@@ -31,7 +31,8 @@
 <script>
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
-import store from "@/store";
+import { mapState } from "vuex";
+
 export default {
   components: {
     CarouselItem,
@@ -42,7 +43,6 @@ export default {
       index: 0, // 当前显示的第几章轮播图
       containerHeight: 0, // 容器的高度
       isLoading: true,
-      data: []
     };
   },
   // 这里仅仅是注入完成
@@ -52,14 +52,11 @@ export default {
   //   this.isLoading = false;
   // },
 
-
   // 用vuex完成的数据传递
-  async created(){
-    store.dispatch("banner/fetchBanner");
-    this.data = store.state.banner.data;
+  async created() {
+    this.$store.dispatch("banner/fetchBanner");
     this.isLoading = false;
   },
-
 
   // 等挂载完成形成真实的DOM之后才能获取到相应的DOM元素
   mounted() {
@@ -69,6 +66,7 @@ export default {
     marginTop() {
       return -(this.index * this.containerHeight) + "px";
     },
+    ...mapState("banner", ["loading", "data"]),
   },
   methods: {
     // 这个方法是用来给组件混入的函数传参的，要不然组件混入内部不晓得获取哪里的数据
