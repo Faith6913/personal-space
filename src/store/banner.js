@@ -1,6 +1,6 @@
 import { getBanners } from "@/api/banner";
 export default {
-  namespced: true,
+  namespaced: true,
   state: {
     loading: false,
     data: [],
@@ -9,8 +9,8 @@ export default {
     setLoading(state, payload) {
       state.loading = payload;
     },
-    setDataS(state, payload) {
-      state.banners = payload;
+    setData(state, payload) {
+      state.data = payload;
     },
   },
   actions: {

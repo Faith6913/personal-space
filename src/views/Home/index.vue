@@ -29,12 +29,10 @@
 </template>
 
 <script>
-import { getBanners } from "@/api/banner";
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
-import fetchAPI from "@/mixins/fetchData";
+import store from "@/store";
 export default {
-  mixins:[fetchAPI([])],
   components: {
     CarouselItem,
     Icon,
@@ -44,6 +42,7 @@ export default {
       index: 0, // 当前显示的第几章轮播图
       containerHeight: 0, // 容器的高度
       isLoading: true,
+      data: []
     };
   },
   // 这里仅仅是注入完成
@@ -52,6 +51,14 @@ export default {
   //   this.data = await getBanners();
   //   this.isLoading = false;
   // },
+
+
+  // 用vuex完成的数据传递
+  async created(){
+    store.dispatch("banner/fetchBanner");
+    this.data = store.state.banner.data;
+    this.isLoading = false;
+  },
 
 
   // 等挂载完成形成真实的DOM之后才能获取到相应的DOM元素
@@ -65,9 +72,9 @@ export default {
   },
   methods: {
     // 这个方法是用来给组件混入的函数传参的，要不然组件混入内部不晓得获取哪里的数据
-    async fetchData(){
-      return await getBanners();
-    },
+    // async fetchData(){
+    //   return await getBanners();
+    // },
     prev() {
       this.index--;
       if (this.index < 0) {
