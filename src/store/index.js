@@ -3,6 +3,7 @@ import Vue from "vue";
 import banner from "./banner";
 import setting from "./setting";
 import about from "./about";
+import projects from "./projects";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -10,6 +11,7 @@ const store = new Vuex.Store({
     banner,
     setting,
     about,
+    projects,
   },
   strict: true,
 });

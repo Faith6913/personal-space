@@ -110,3 +110,9 @@ new Vue({
 // getAbout().then((resp) => {
 //   console.log(resp);
 // });
+
+// 测试项目的数据接口
+// import getProject from "@/api/project";
+// getProject().then((resp) => {
+//   console.log(resp);
+// });

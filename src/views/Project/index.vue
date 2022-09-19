@@ -1,29 +1,35 @@
 <template>
-  <div class="project-container">
+  <div class="project-container" @scroll="handleScroll" ref="container">
     <div class="title-container">
       <h2>项目 & 效果</h2>
     </div>
 
     <div class="project-demo-container">
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
-      <DemoCard />
+      <DemoCard v-for="item in data" :key="item.id" :demoList="item" />
     </div>
   </div>
 </template>
 
 <script>
+import eventBus from "@/eventBus";
 import DemoCard from "./components/DemoCard";
+import { mapState } from "vuex";
+import toTop from "@/mixins/toTop";
 export default {
+  mixins: [toTop],
+  computed: {
+    ...mapState("projects", ["loading", "data"]),
+  },
   components: {
     DemoCard,
+  },
+  async created() {
+    await this.$store.dispatch("projects/getProjects");
+  },
+  methods: {
+    handleScroll() {
+      eventBus.$emit("projectScroll");
+    },
   },
 };
 /* 
@@ -39,10 +45,10 @@ export default {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: lighten( @gray, 20%);
+  scroll-behavior: smooth;
+  background-color: lighten(@gray, 20%);
   .title-container {
     width: 100%;
-    // padding: 10px;
     padding-top: 40px;
     h2 {
       margin: 0;

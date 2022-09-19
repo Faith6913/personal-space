@@ -36,5 +36,6 @@ export default {
     setTimeout(setImages, 50);
     el.setAttribute("src", defaultImg);
     eventBus.$on("blogScroll", debounceSet);
+    eventBus.$on("projectScroll", debounceSet);
   },
 };

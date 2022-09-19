@@ -1,23 +1,82 @@
 <template>
-  <div class="demo-card-container"></div>
+  <div class="demo-card-container">
+    <a :href="demoList.url" target="_blank"
+      ><img v-lazy="demoList.thumb" alt="封面"
+    /></a>
+    <div class="demo-name-container">
+      <a :href="demoList.url" target="_blank"
+        ><h3>{{ demoList.name }}</h3></a
+      >
+    </div>
+    <div class="demo-desp-container">
+      <p>{{ demoList.description[0] }}</p>
+    </div>
+
+    <div class="tag-out-container">
+      <Tag v-for="(item, i) in demoList.tagArr" :key="i" :info="item" />
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
+import Tag from "./Tag";
+export default {
+  components: {
+    Tag,
+  },
+  props: {
+    demoList: {
+      type: Object,
+      required: true,
+      default: {},
+    },
+  },
+};
 </script>
 
 <style scoped lang="less">
 @import "@/styles/var.less";
 .demo-card-container {
-  height: 240px;
+  height: 250px;
   background-color: rgb(255, 255, 255);
   margin: 20px;
   border-radius: 10px;
-  cursor: pointer;
-  transition: 0.5s;
+  overflow: hidden;
+  font-size: 0;
   &:hover {
     transform: scale(1.1) translateY(-10px);
     box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
   }
+  img {
+    width: 100%;
+    height: 150px;
+  }
+  .demo-name-container {
+    width: 100%;
+    height: 20px;
+    padding-top: 5px;
+    padding-left: 20px;
+    h3 {
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+  .demo-desp-container {
+    width: 100%;
+    height: 20px;
+    font-size: 12px;
+    padding-left: 20px;
+    p {
+      color: #262627;
+      font-weight: 400;
+    }
+  }
+  .tag-out-container {
+    display: flex;
+    padding-top: 5px;
+    padding-left: 20px;
+  }
+  cursor: pointer;
+  transition: 0.5s;
 }
 </style>
