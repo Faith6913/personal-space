@@ -35,10 +35,11 @@ Mock.mock(/^\/api\/blog\?.*$/, "get", function (options) {
           },
           "scanNumber|0-1000": 0,
           "commentNumber|0-200": 0,
-          "thumb|1": [
-            Mock.Random.image("300x250", "#000", "#fff", "Random Image"),
-            null,
-          ],
+          // "thumb|1": [
+          //   Mock.Random.image("300x250", "#fff", "@rgb", "png","@title(1,2)"),
+          //   null,
+          // ],
+          "thumb|1": ["@image(300x250, @color, @color, @natural)", null],
           createDate: "@date('T')",
         },
       ],
@@ -87,10 +88,7 @@ Mock.mock(/^\/api\/blog\/[^\/]*$/, "get", function (options) {
         },
       ],
       createDate: "@date",
-      "thumb|1": [
-        Mock.Random.image("300x250", "#000", "#fff", "Random Image"),
-        null,
-      ],
+      "thumb|1": [Mock.Random.image("300x250", "@color", "#fff", "www"), null],
       htmlContent: `<blockquote>
       <p>阅读本文，你需要首先知道：</p><ol>
       <li>浏览器的同源策略</li>
@@ -359,7 +357,7 @@ Mock.mock(/^\/api\/comment\?.*$/, "get", function (options) {
     code: 0,
     msg: "",
     "data|10-20": {
-      "total": 52,
+      total: 52,
       [`rows|${query.limit || 10}`]: [
         {
           "id|+1": 1,
