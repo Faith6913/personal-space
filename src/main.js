@@ -6,7 +6,7 @@ import "./styles/global.less";
 import { showMessage } from "@/utils";
 import store from "./store";
 store.dispatch("setting/fetchSetting");
-// console.log(store);
+
 Vue.config.productionTip = false;
 Vue.prototype.$showMessage = showMessage;
 

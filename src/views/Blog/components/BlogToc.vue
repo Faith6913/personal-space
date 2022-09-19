@@ -67,6 +67,7 @@ export default {
       // 这里处理选中的isSelect属性，不光有点击，还要和本组件的兄弟组件BlogDetail之间进行通信
       this.selected = item.anchor;
       location.hash = item.anchor;
+      
     },
     // 写一个方法，每次调用的时候就能够设置成正确的状态
     setSelect() {

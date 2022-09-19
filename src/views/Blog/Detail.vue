@@ -22,7 +22,7 @@ import fetchAPI from "@/mixins/fetchData";
 import toTopAPI from "@/mixins/toTop";
 import { getBlogContentById } from "@/api/blog.js";
 import BlogComment from "./components/BlogComment";
-// import eventBus from "@/eventBus.js";
+import titleControl from "@/utils/titleControl";
 export default {
   name: "Detail",
   // 混合，第一个是获取数据的一些代码
@@ -37,6 +37,7 @@ export default {
   methods: {
     async fetchData() {
       const blog = await getBlogContentById(this.$route.params.id);
+      titleControl.setRouterTitle(blog.title);
       return blog;
     },
   },
