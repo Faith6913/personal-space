@@ -162,7 +162,7 @@ export default {
       }
       .tip {
         position: absolute;
-        right: 506px;
+        left: 285px;
         bottom: 4px;
         font-size: 10px;
         color: @gray;
@@ -193,7 +193,7 @@ export default {
       }
       .tip {
         position: absolute;
-        right: 200px;
+        left: 585px;
         bottom: 38px;
         font-size: 10px;
         color: @gray;

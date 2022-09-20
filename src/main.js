@@ -116,3 +116,9 @@ new Vue({
 // getProject().then((resp) => {
 //   console.log(resp);
 // });
+
+// 测试留言板的数据接口
+// import getMessage from "@/api/message";
+// getMessage().then((resp) => {
+//   console.log(resp);
+// });
