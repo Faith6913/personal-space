@@ -1,10 +1,42 @@
+import "nprogress/nprogress.css";
+import { start, done, configure } from "nprogress";
+window.nprogress = {
+  start,
+  done,
+};
+configure({
+  trickleSpeed: 30,
+  showSpinner: false,
+});
+function delay(ms) {
+  return new Promise((reslove) => {
+    setTimeout(() => {
+      reslove();
+    }, ms);
+  });
+}
+
+function getPageComponent(pageCompResolve) {
+  return async () => {
+    start();
+    if (process.env.NODE_ENV === "development") {
+      await delay(2000);
+    }
+    const comp = await pageCompResolve();
+    done();
+    return comp;
+  };
+}
+
 const routes = [
   // 路由规则
   // 当匹配到路径 / 时，渲染 Home 组件
   {
     name: "Home",
     path: "/",
-    component: () => import(/* webpackChunkName: home */ "@/views/Home"),
+    component: getPageComponent(() =>
+      import( "@/views/Home")
+    ),
     meta: {
       title: "首页",
     },
@@ -13,7 +45,9 @@ const routes = [
   {
     name: "Blog",
     path: "/blog",
-    component: () => import(/* webpackChunkName: blog */ "@/views/Blog"),
+    component: getPageComponent(() =>
+      import( "@/views/Blog")
+    ),
     meta: {
       title: "博客",
     },
@@ -21,7 +55,9 @@ const routes = [
   {
     name: "CategoryBlog",
     path: "/blog/cate/:categoryId",
-    component: () => import(/* webpackChunkName: blog */ "@/views/Blog"),
+    component: getPageComponent(() =>
+      import( "@/views/Blog")
+    ),
     meta: {
       title: "博客",
     },
@@ -29,8 +65,9 @@ const routes = [
   {
     name: "BlogDetail",
     path: "/blog/:id",
-    component: () =>
-      import(/* webpackChunkName: detail */ "@/views/Blog/Detail"),
+    component: getPageComponent(() =>
+      import( "@/views/Blog/Detail")
+    ),
     meta: {
       title: "博客详情",
     },
@@ -38,7 +75,9 @@ const routes = [
   {
     name: "About",
     path: "/about",
-    component: () => import(/* webpackChunkName: about */ "@/views/About"),
+    component: getPageComponent(() =>
+      import("@/views/About")
+    ),
     meta: {
       title: "关于我",
     },
@@ -46,7 +85,9 @@ const routes = [
   {
     name: "Project",
     path: "/project",
-    component: () => import(/* webpackChunkName: project */ "@/views/Project"),
+    component: getPageComponent(() =>
+      import("@/views/Project")
+    ),
     meta: {
       title: "项目&效果",
     },
@@ -54,7 +95,9 @@ const routes = [
   {
     name: "Message",
     path: "/message",
-    component: () =>   import(/* webpackChunkName: message */ "@/views/Message"),
+    component: getPageComponent(() =>
+      import( "@/views/Message")
+    ),
     meta: {
       title: "留言板",
     },
@@ -66,3 +109,5 @@ export default {
   mode,
   routes,
 };
+
+// /* webpackChunkName: message */
