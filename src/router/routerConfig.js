@@ -1,12 +1,11 @@
 import "nprogress/nprogress.css";
 import { start, done, configure } from "nprogress";
-window.nprogress = {
-  start,
-  done,
-};
 configure({
   trickleSpeed: 30,
   showSpinner: false,
+  parent: "body",
+  // positionUsing: "absolute"
+  // barSelector: "",
 });
 function delay(ms) {
   return new Promise((reslove) => {
