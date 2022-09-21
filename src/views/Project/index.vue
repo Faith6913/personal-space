@@ -1,5 +1,5 @@
 <template>
-  <div class="project-container" @scroll="handleScroll" ref="container">
+  <div class="project-container" @scroll="handleScroll" ref="container" v-loading="loading">
     <div class="title-container">
       <h2>项目 & 效果</h2>
     </div>
@@ -47,6 +47,7 @@ export default {
   overflow-x: hidden;
   scroll-behavior: smooth;
   background-color: lighten(@gray, 20%);
+  position: relative;
   .title-container {
     width: 100%;
     padding-top: 40px;

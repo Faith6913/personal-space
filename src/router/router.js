@@ -2,7 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import config from "./routerConfig";
 import titleControl from "@/utils/titleControl";
-Vue.use(VueRouter);
+
+if (!window.VueRouter) {
+  // 没有使用传统的方式引入VueRouter
+  Vue.use(VueRouter);
+}
 const router = new VueRouter(config);
 
 // 每次进到一个网站之后，设置一下网站标签的路由标题
