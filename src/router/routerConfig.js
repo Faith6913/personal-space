@@ -1,16 +1,10 @@
-import Home from "@/views/Home";
-import Blog from "@/views/Blog";
-import About from "@/views/About";
-import Project from "@/views/Project";
-import Message from "@/views/Message";
-import BlogDetail from "@/views/Blog/Detail";
 const routes = [
   // 路由规则
   // 当匹配到路径 / 时，渲染 Home 组件
   {
     name: "Home",
     path: "/",
-    component: Home,
+    component: () => import(/* webpackChunkName: home */ "@/views/Home"),
     meta: {
       title: "首页",
     },
@@ -19,7 +13,7 @@ const routes = [
   {
     name: "Blog",
     path: "/blog",
-    component: Blog,
+    component: () => import(/* webpackChunkName: blog */ "@/views/Blog"),
     meta: {
       title: "博客",
     },
@@ -27,7 +21,7 @@ const routes = [
   {
     name: "CategoryBlog",
     path: "/blog/cate/:categoryId",
-    component: Blog,
+    component: () => import(/* webpackChunkName: blog */ "@/views/Blog"),
     meta: {
       title: "博客",
     },
@@ -35,7 +29,8 @@ const routes = [
   {
     name: "BlogDetail",
     path: "/blog/:id",
-    component: BlogDetail,
+    component: () =>
+      import(/* webpackChunkName: detail */ "@/views/Blog/Detail"),
     meta: {
       title: "博客详情",
     },
@@ -43,7 +38,7 @@ const routes = [
   {
     name: "About",
     path: "/about",
-    component: About,
+    component: () => import(/* webpackChunkName: about */ "@/views/About"),
     meta: {
       title: "关于我",
     },
@@ -51,7 +46,7 @@ const routes = [
   {
     name: "Project",
     path: "/project",
-    component: Project,
+    component: () => import(/* webpackChunkName: project */ "@/views/Project"),
     meta: {
       title: "项目&效果",
     },
@@ -59,7 +54,7 @@ const routes = [
   {
     name: "Message",
     path: "/message",
-    component: Message,
+    component: () =>   import(/* webpackChunkName: message */ "@/views/Message"),
     meta: {
       title: "留言板",
     },

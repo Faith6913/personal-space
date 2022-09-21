@@ -15,7 +15,20 @@
         continue.</strong
       >
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <style>
+        .loading-gif {
+          position: fixed;
+          width: 200px;
+          height: 200px;
+          left: 50%;
+          top: 50%;
+          margin-top: -100px;
+          margin-left: -100px;
+        }
+      </style>
+      <img src="./img/loading.gif" alt="" class="loading-gif" />
+    </div>
 
     <% if(NODE_ENV === "production") { %>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js"></script>
