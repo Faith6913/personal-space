@@ -4,8 +4,6 @@ configure({
   trickleSpeed: 30,
   showSpinner: false,
   parent: "body",
-  // positionUsing: "absolute"
-  // barSelector: "",
 });
 function delay(ms) {
   return new Promise((reslove) => {
@@ -33,9 +31,7 @@ const routes = [
   {
     name: "Home",
     path: "/",
-    component: getPageComponent(() =>
-      import( "@/views/Home")
-    ),
+    component: getPageComponent(() => import("@/views/Home")),
     meta: {
       title: "首页",
     },
@@ -44,9 +40,7 @@ const routes = [
   {
     name: "Blog",
     path: "/blog",
-    component: getPageComponent(() =>
-      import( "@/views/Blog")
-    ),
+    component: getPageComponent(() => import("@/views/Blog")),
     meta: {
       title: "博客",
     },
@@ -54,9 +48,7 @@ const routes = [
   {
     name: "CategoryBlog",
     path: "/blog/cate/:categoryId",
-    component: getPageComponent(() =>
-      import( "@/views/Blog")
-    ),
+    component: getPageComponent(() => import("@/views/Blog")),
     meta: {
       title: "博客",
     },
@@ -64,9 +56,7 @@ const routes = [
   {
     name: "BlogDetail",
     path: "/blog/:id",
-    component: getPageComponent(() =>
-      import( "@/views/Blog/Detail")
-    ),
+    component: getPageComponent(() => import("@/views/Blog/Detail")),
     meta: {
       title: "博客详情",
     },
@@ -74,9 +64,7 @@ const routes = [
   {
     name: "About",
     path: "/about",
-    component: getPageComponent(() =>
-      import("@/views/About")
-    ),
+    component: getPageComponent(() => import("@/views/About")),
     meta: {
       title: "关于我",
     },
@@ -84,9 +72,7 @@ const routes = [
   {
     name: "Project",
     path: "/project",
-    component: getPageComponent(() =>
-      import("@/views/Project")
-    ),
+    component: getPageComponent(() => import("@/views/Project")),
     meta: {
       title: "项目&效果",
     },
@@ -94,12 +80,15 @@ const routes = [
   {
     name: "Message",
     path: "/message",
-    component: getPageComponent(() =>
-      import( "@/views/Message")
-    ),
+    component: getPageComponent(() => import("@/views/Message")),
     meta: {
       title: "留言板",
     },
+  },
+  {
+    name: "404",
+    path: "/*",
+    component: getPageComponent(() => import("@/components/404")),
   },
 ];
 const mode = "history";
