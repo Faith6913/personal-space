@@ -32,7 +32,7 @@
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
 import { mapState } from "vuex";
-
+import debounce from "@/utils/debounce";
 export default {
   components: {
     CarouselItem,
@@ -43,6 +43,7 @@ export default {
       index: 0, // 当前显示的第几章轮播图
       containerHeight: 0, // 容器的高度
       isLoading: true,
+      scrollY: 0,
     };
   },
   // 这里仅仅是注入完成
@@ -94,20 +95,20 @@ export default {
       this.index = i;
       this.toPage();
     },
+    clearScrollY() {
+      this.scrollY = 0;
+    },
     // 处理容器的鼠标滚轮事件，但是每个鼠标的滚轮事件属性不太一样，还没找到解决方案
     handlerScroll(e) {
-      console.log(e);
-      // if(e.deltaY > 0){
-      //   scrollNextCount ++;
-      // }
-      // if (this.scrollCount >= 3 && e.deltaY > 0) {
-      //   console.log("下一页");
-      //   this.scrollCount = 0;
-      // }
-      // if (this.scrollCount >= 3 && e.deltaY < 0) {
-      //   console.log("上一页");
-      //   this.scrollCount = 0;
-      // }
+      setTimeout(this.clearScrollY, 1000);
+      this.scrollY += e.deltaY;
+      if (this.scrollY > 290) {
+        this.next();
+        this.clearScrollY();
+      } else if (this.scrollY < -290) {
+        this.prev();
+        this.clearScrollY();
+      }
     },
   },
 };

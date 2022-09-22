@@ -7,7 +7,6 @@
       width: size + 'px',
       height: size + 'px',
     }"
-    @load="handlerLoad"
   />
 </template>
 
@@ -21,11 +20,6 @@ export default {
     size: {
       type: Number,
       default: 100,
-    },
-  },
-  methods: {
-    handlerLoad() {
-      console.log("图片加载完成");
     },
   },
 };
