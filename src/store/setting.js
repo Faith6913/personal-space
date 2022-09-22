@@ -36,7 +36,7 @@ export default {
         document.querySelector("head").appendChild(link);
       }
       // 设置网站标题的判断选项
-      if (resp.siteTitle) {
+      if (resp.siteTitle) { 
         titleControl.setSiteTitle(resp.siteTitle);
       }
     },

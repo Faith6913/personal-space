@@ -16,6 +16,6 @@ Mock.mock("/api/setting", "get", {
     mail: "zhihao_2023@163.com", //空间主人的邮箱
     icp: "苏ICP备17001719号", //空间主人的备案号
     githubName: "Faith6913", //空间主人的github名称
-    favicon: "http://mdrs.yuanjin.tech/Fs4CDlC6mwe_WXLMIiXcmSJLHO4f", //网站的favicon地址
+    // favicon: "http://mdrs.yuanjin.tech/Fs4CDlC6mwe_WXLMIiXcmSJLHO4f", //网站的favicon地址
   },
 });

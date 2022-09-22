@@ -17,7 +17,6 @@
 import Avatar from "@/components/Avatar";
 import Contact from "./Contact";
 import Menu from "./Menu";
-import avatar from "@/assets/1.jpg";
 import { mapState } from "vuex";
 import loadingGIF from "@/assets/loading.svg";
 export default {

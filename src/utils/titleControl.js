@@ -3,8 +3,8 @@
     路由标题:  导航守卫控制
     网站标题:  仓库控制
 */
-let routerTitle,
-  siteTitle = "";
+let routerTitle = "";
+let siteTitle = "";
 
 function setTitle() {
   let title = document.querySelector("title");
@@ -26,7 +26,12 @@ function setTitle() {
 }
 export default {
   setRouterTitle(title) {
-    routerTitle = title;
+    if (!title) {
+      routerTitle = "404";
+    } else {
+      routerTitle = title;
+    }
+
     setTitle();
   },
   setSiteTitle(title) {
