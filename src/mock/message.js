@@ -21,6 +21,10 @@ Mock.mock(/^\/api\/message\?.*$/, "get", function (options) {
         },
       ],
     },
+    // data: {
+    //   total: 0,
+    //   rows: [],
+    // },
   });
 });
 

@@ -7,6 +7,7 @@
       :isListLoading="isLoading"
       @submit="handlerSubmit"
     />
+    <Empty v-if="data.rows ? data.rows.length === 0 : false" />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import MessageArea from "@/components/MessageArea";
 import { getComments, postComment } from "@/api/blog";
 import fetchAPI from "@/mixins/fetchData";
 import eventBus from "@/eventBus.js";
+import Empty from "@/components/Empty";
 export default {
   mixins: [fetchAPI({})],
   data() {
@@ -25,6 +27,7 @@ export default {
   },
   components: {
     MessageArea,
+    Empty,
   },
   methods: {
     async fetchData() {

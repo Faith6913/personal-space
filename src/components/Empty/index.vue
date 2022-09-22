@@ -17,7 +17,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: "无数据",
+      default: "暂无数据",
     },
   },
 };
@@ -25,8 +25,8 @@ export default {
 
 <style lang="less" scoped>
 @import "~@/styles/mixin.less";
-@textColor: rgb(164, 162, 162);
-@iconColor: rgb(143, 133, 133);
+@textColor: rgb(217, 215, 215);
+@iconColor: rgb(150, 149, 149);
 .empty-container {
   // height: inherit;
   // display: flex;
@@ -35,13 +35,14 @@ export default {
   // align-items: center;
   .self-center();
   .iconfont {
-    font-size: 40px;
+    font-size: 80px;
     color: @iconColor;
   }
   p{
-    font-size: 10px;
+    font-size: 20px;
     color: @textColor;
     letter-spacing: 2px;
+    text-align: center;
   }
 }
 </style>

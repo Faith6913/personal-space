@@ -17,11 +17,14 @@ Mock.mock("/api/blogtype", "get", {
   },
 });
 Mock.mock(/^\/api\/blog\?.*$/, "get", function (options) {
-  // console.log(options);
   const query = qs.parse(options.url);
   return Mock.mock({
     code: 0,
     msg: "",
+    // data: {
+    //   total: 0,
+    //   rows: [],
+    // },
     data: {
       "total|2000-3000": 0, //总数
       [`rows|${query.limit || 10}`]: [

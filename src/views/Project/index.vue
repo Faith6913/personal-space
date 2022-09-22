@@ -1,5 +1,10 @@
 <template>
-  <div class="project-container" @scroll="handleScroll" ref="container" v-loading="loading">
+  <div
+    class="project-container"
+    @scroll="handleScroll"
+    ref="container"
+    v-loading="loading"
+  >
     <div class="title-container">
       <h2>项目 & 效果</h2>
     </div>
@@ -7,6 +12,7 @@
     <div class="project-demo-container">
       <DemoCard v-for="item in data" :key="item.id" :demoList="item" />
     </div>
+    <Empty v-if="data ? data.length === 0 : false" />
   </div>
 </template>
 
@@ -15,6 +21,7 @@ import eventBus from "@/eventBus";
 import DemoCard from "./components/DemoCard";
 import { mapState } from "vuex";
 import toTop from "@/mixins/toTop";
+import Empty from "@/components/Empty";
 export default {
   mixins: [toTop],
   computed: {
@@ -22,6 +29,7 @@ export default {
   },
   components: {
     DemoCard,
+    Empty,
   },
   async created() {
     await this.$store.dispatch("projects/getProjects");

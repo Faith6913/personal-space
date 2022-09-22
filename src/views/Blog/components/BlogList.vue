@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="blog-list-container"
-    v-loading="isLoading"
-    ref="container"
-  >
+  <div class="blog-list-container" v-loading="isLoading" ref="container">
     <ul class="article-preview-container">
       <li class="article-item" v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
@@ -63,6 +59,8 @@
         />
       </div>
     </ul>
+
+    <Empty v-if="data.rows? data.rows.length === 0 : false" />
   </div>
 </template>
 
@@ -73,10 +71,12 @@ import toTopAPI from "@/mixins/toTop";
 import Pager from "@/components/Pager";
 import { formatDate } from "@/utils";
 import eventBus from "@/eventBus.js";
+import Empty from "@/components/Empty";
 export default {
-  mixins: [fetchAPI([]), toTopAPI],
+  mixins: [fetchAPI({}), toTopAPI],
   components: {
     Pager,
+    Empty,
   },
   data() {
     return {

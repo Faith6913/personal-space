@@ -3,12 +3,13 @@
     <div class="content-container">
       <MessageArea
         title="留言板"
-        :subtitle="`(${52})`"
+        :subtitle="`(${totalMessage})`"
         :isListLoading="isLoading"
         :list="messageList"
         @submit="handlerSubmit"
       />
     </div>
+    <Empty v-if="(messageList ? messageList.length === 0 : false) && !isLoading" />
   </div>
 </template>
 
@@ -18,10 +19,12 @@ import fetchAPI from "@/mixins/fetchData";
 import toTopAPI from "@/mixins/toTop";
 import * as message from "@/api/message";
 import eventBus from "@/eventBus";
+import Empty from "@/components/Empty";
 export default {
   mixins: [fetchAPI({}, 1, 10), toTopAPI],
   components: {
     MessageArea,
+    Empty,
   },
   data() {
     return {
@@ -32,22 +35,11 @@ export default {
     };
   },
   methods: {
-    // handler() {
-    //   showMessage({
-    //     content: "感谢您, 评论成功 ~",
-    //     type: "success",
-    //     duration: 2000,
-    //     container: this.$refs.container,
-    //     callback: () => {
-    //       console.log("消息弹窗结束啦~");
-    //     },
-    //   });
-    // },
-
     async fetchData(page, limit) {
       const resp = await message.getMessage(page, limit);
       this.messageList = resp.rows;
       this.totalMessage = resp.total;
+      this.isLoading = false;
     },
     async fetchMore() {
       if (!this.messageList) {
@@ -61,6 +53,7 @@ export default {
       const resp = await message.getMessage(1, 5);
       this.totalMessage = resp.total;
       if (!this.messageList) {
+        this.isLoading = false;
         return;
       }
       this.messageList = this.messageList.concat(resp.rows);
@@ -92,7 +85,7 @@ export default {
   height: 100vh;
   overflow-y: auto;
   scroll-behavior: smooth;
-  background-color: rgb(241, 241, 247);
+  background-color: rgb(255, 255, 255);
   .content-container {
     width: 90%;
     margin: 0 auto;

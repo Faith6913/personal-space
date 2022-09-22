@@ -1,7 +1,7 @@
 <template>
   <div class="sideaside-container">
     <div class="up">
-      <Avatar :url="data.avatar || ''" class="avatar" :size="120"/>
+      <Avatar :url="data.avatar || avatarURL" class="avatar" :size="120" />
       <h1 class="title">{{ data.siteTitle }}</h1>
       <Menu class="menu" />
     </div>
@@ -19,6 +19,7 @@ import Contact from "./Contact";
 import Menu from "./Menu";
 import avatar from "@/assets/1.jpg";
 import { mapState } from "vuex";
+import loadingGIF from "@/assets/loading.svg";
 export default {
   components: {
     Avatar,
@@ -27,7 +28,7 @@ export default {
   },
   data() {
     return {
-      avatarURL: avatar,
+      avatarURL: loadingGIF,
     };
   },
   computed: {
