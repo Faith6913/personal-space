@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-toc-container" ref="container">
+  <div class="blog-toc-container" ref="container" v-if="tocWithSelected.length">
     <h2>目录</h2>
     <RightList :list="tocWithSelected" @select="handlerSelect" />
   </div>
@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       selected: "",
+      titleOrder: 0,
     };
   },
   components: {
@@ -32,8 +33,12 @@ export default {
        * @params {Array} toc 不带isSelect属性的toc目录数组
        * @returns {Array} 带有isSelect属性的toc目录数组，可以传递给RightList组件使用
        */
+      // this.titleOrder = 0;
       const getToc = (toc = []) => {
         return toc.map((item) => {
+          // this.titleOrder++;
+          // console.log(item.name, item.anchor, this.titleOrder, item);
+          // item.anchor = `article-md-title-${this.titleOrder}`;
           return {
             ...item,
             isSelcet: this.selected === item.anchor,
@@ -41,13 +46,13 @@ export default {
           };
         });
       };
-
       return getToc(this.toc);
     },
     // 根据toc得到它们对应的元素数组
     doms() {
       const domsArray = [];
       function getDomsByTocArray(toc) {
+        // console.log(toc);
         toc.forEach((item) => {
           domsArray.push(document.querySelector(`#${item.anchor}`));
           if (item.children) {
@@ -67,7 +72,6 @@ export default {
       // 这里处理选中的isSelect属性，不光有点击，还要和本组件的兄弟组件BlogDetail之间进行通信
       this.selected = item.anchor;
       location.hash = item.anchor;
-      
     },
     // 写一个方法，每次调用的时候就能够设置成正确的状态
     setSelect() {

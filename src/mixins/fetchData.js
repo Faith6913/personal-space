@@ -10,7 +10,6 @@ export default function (dataType, page = 1, limit = 10) {
     },
     async created() {
       const datas = await this.fetchData(page, limit);
-      // console.log(datas);
       this.data = datas;
       this.isLoading = false;
     },

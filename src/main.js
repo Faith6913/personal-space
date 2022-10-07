@@ -29,15 +29,15 @@ new Vue({
 // 测试一下博客远程数据获取
 // import { getBlogtypes, getBlogs } from "@/api/blog.js";
 // console.log("------ Test -------");
-// getBlogtypes().then((resp)=>{
-//   console.log("博客分类",resp);
+// getBlogtypes().then((resp) => {
+//   console.log("博客分类", resp);
 // });
-// getBlogs(2, 20, 2).then((resp)=>{
-//   console.log("博客",resp);
+// getBlogs(1, 20).then((resp) => {
+//   console.log("博客", resp);
 // });
 // import { getBlogContentById } from "@/api/blog.js";
 // console.log("-------  Test  --------");
-// getBlogContentById('4B15914c-eFD5-048B-B43c-AE4c31bC9E97').then((resp) => {
+// getBlogContentById("4B15914c-eFD5-048B-B43c-AE4c31bC9E97").then((resp) => {
 //   console.log(resp);
 // });
 

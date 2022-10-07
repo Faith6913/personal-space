@@ -1,7 +1,7 @@
 <template>
   <div class="about-container">
-    <div class="about-content" v-loading="loading || !srcLoaded">
-      <iframe :src="data" frameborder="0" @load="srcLoaded = true"></iframe>
+    <div class="about-content">
+      <iframe :src="data" frameborder="0" @load="handleLoad"></iframe>
     </div>
   </div>
 </template>
@@ -17,8 +17,14 @@ export default {
   computed: {
     ...mapState("about", ["loading", "data"]),
   },
-  created() {
+  async created() {
     this.$store.dispatch("about/fetchAbout");
+  },
+  methods: {
+    handleLoad() {
+      console.log("把加载去掉");
+      this.srcLoaded = true;
+    },
   },
 };
 </script>
@@ -30,7 +36,7 @@ export default {
   position: relative;
   .about-content {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     iframe {
       width: 100%;
       height: 100%;

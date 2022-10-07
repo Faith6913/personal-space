@@ -7,14 +7,16 @@ import request from "./request";
  * @param {Number} categoryid
  * @returns
  */
-export async function getBlogs(page = 1, limit = 10, categoryid = 1) {
-  return await request.get("/api/blog", {
+export async function getBlogs(page = 1, limit = 10, categoryid = -1) {
+  const resp = await request.get("/api/blog", {
     params: {
       page,
       limit,
       categoryid,
     },
   });
+  console.log(resp);
+  return resp;
 }
 /**
  * 获取博客分类
@@ -22,7 +24,7 @@ export async function getBlogs(page = 1, limit = 10, categoryid = 1) {
  */
 export async function getBlogtypes() {
   const resp = await request.get("/api/blogtype");
-  return resp.data;
+  return resp;
 }
 
 /**

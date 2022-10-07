@@ -1,7 +1,7 @@
 <template>
-  <div class="blog-category-container" v-loading="isLoading" v-if="true">
+  <div class="blog-category-container" v-loading="isLoading">
     <h2>文章分类</h2>
-    <RightList :list="appList" @select="handlerSelect" />
+    <RightList :list="appList || []" @select="handlerSelect" v-if="!!appList" />
   </div>
 </template>
 
@@ -19,6 +19,10 @@ export default {
       return +this.$route.params.categoryId || -1;
     },
     appList() {
+      if (!this.data) {
+        // cosnole.log(this.data);
+        return;
+      }
       const totleArticleCount = this.data.reduce((prev, cur) => {
         return cur.articleCount + prev;
       }, 0);
@@ -72,7 +76,7 @@ export default {
   position: relative;
   height: 100%;
   overflow-y: auto;
-  h2{
+  h2 {
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 2px;
