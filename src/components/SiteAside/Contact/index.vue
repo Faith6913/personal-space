@@ -1,6 +1,6 @@
 <template>
   <div class="contact-container">
-    <a :href="data.githubName" target="_blank">
+    <a :href="data.github" target="_blank">
       <Icon class="iconFont" type="github" />
       <p>{{ data.githubName }}</p>
     </a>
@@ -15,7 +15,7 @@
         <img src="@/assets/my-qq.png" alt="" />
       </div>
     </a>
-    <a target="_blank">
+    <a :href="data.weixinQrCode" target="_blank">
       <Icon class="iconFont weiChat" type="weixin" />
       <p>{{ data.weixin }}</p>
       <div class="qr-code">

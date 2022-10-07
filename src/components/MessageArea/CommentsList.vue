@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="date">
-        {{ item.createDate }}
+        {{ formatDate(item.createDate) }}
       </div>
     </li>
   </ul>
@@ -17,6 +17,7 @@
 
 <script>
 import Avatar from "@/components/Avatar";
+import { formatDate } from "@/utils";
 export default {
   props: {
     list: {
@@ -26,6 +27,9 @@ export default {
   },
   components: {
     Avatar,
+  },
+  methods: {
+    formatDate,
   },
 };
 </script>

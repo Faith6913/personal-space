@@ -39,7 +39,7 @@
                 },
               }"
             >
-              分类: {{ item.category.id }}
+              分类: {{ item.category.name }}
             </RouterLink>
           </div>
           <p class="desp">
@@ -60,7 +60,7 @@
       </div>
     </ul>
 
-    <Empty v-if="data.rows? data.rows.length === 0 : false" />
+    <Empty v-if="data.rows ? data.rows.length === 0 : false" />
   </div>
 </template>
 

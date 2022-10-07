@@ -11,9 +11,13 @@
     <div class="demo-desp-container">
       <p>{{ demoList.description[0] }}</p>
     </div>
-
-    <div class="tag-out-container">
+    <div v-if="demoList.tagArr === []" class="tag-out-container">
       <Tag v-for="(item, i) in demoList.tagArr" :key="i" :info="item" />
+    </div>
+    <div v-else class="bottom-container">
+      <a :href="demoList.github" class="github" target="_blank">
+        <span>转到Github</span>
+      </a>
     </div>
   </div>
 </template>
@@ -29,6 +33,11 @@ export default {
       type: Object,
       required: true,
       default: {},
+    },
+  },
+  methods: {
+    handleClick() {
+      console.log(this.demoList);
     },
   },
 };
@@ -50,6 +59,7 @@ export default {
   img {
     width: 100%;
     height: 150px;
+    object-fit: cover;
   }
   .demo-name-container {
     width: 100%;
@@ -69,6 +79,25 @@ export default {
     p {
       color: #262627;
       font-weight: 400;
+      height: 17px;
+      width: 277px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .bottom-container {
+    width: 100%;
+    height: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 20px;
+    .github {
+      width: 100px;
+      height: 100px;
+      span {
+        font-weight: 400;
+      }
     }
   }
   .tag-out-container {
