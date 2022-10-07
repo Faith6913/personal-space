@@ -2,7 +2,7 @@
   <div v-loading="loading" class="home-container" @mousewheel="handlerScroll">
     <ul class="carousel-container" ref="carousel">
       <li v-for="item in data" :key="item.id">
-        <CarouselItem :src="data" :_id="item.id" :curIndex="index" />
+        <CarouselItem :src="item" :_id="item.id" :curIndex="index" />
       </li>
     </ul>
 

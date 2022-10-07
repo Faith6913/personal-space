@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import "./mock";
+// import "./mock";
 import "./styles/var.less";
 import "./styles/global.less";
 import { showMessage } from "@/utils";

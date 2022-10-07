@@ -3,14 +3,20 @@ module.exports = defineConfig({
   transpileDependencies: ["true"],
   devServer: {
     proxy: {
-      "/api/v3": {
-        target: "https://www.zhihu.com",
+      // "/api/v3": {
+      //   target: "https://www.zhihu.com",
+      // },
+      // "/images": {
+      //   target: "https://cdn.leoh.io",
+      // },
+      // "/infoplus": {
+      //   target: "https://ehall.njtech.edu.cn",
+      // },
+      "/api": {
+        target: "http://localhost:7001",
       },
-      "/images": {
-        target: "https://cdn.leoh.io",
-      },
-      "/infoplus": {
-        target: "https://ehall.njtech.edu.cn",
+      static: {
+        target: "http://localhost:7001",
       },
     },
   },

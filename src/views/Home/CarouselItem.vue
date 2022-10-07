@@ -3,13 +3,13 @@
     <div class="carousel-img"  ref="imgLoader">
       <ImageLoader
         class="image-loader"
-        :src="src[_id - 1].bigImg"
-        :placeholder="src[_id - 1].midImg"
+        :src="src.bigImg"
+        :placeholder="src.midImg"
         @load="handlerLoad"
       />
     </div>
-    <h3 class="title" ref="title">{{ src[_id - 1].title }}</h3>
-    <h4 class="description" ref="desp">{{ src[_id - 1].description }}</h4>
+    <h3 class="title" ref="title">{{ src.title }}</h3>
+    <h4 class="description" ref="desp">{{ src.description }}</h4>
   </div>
 </template>
 

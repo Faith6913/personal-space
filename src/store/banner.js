@@ -18,6 +18,7 @@ export default {
       if (ctx.state.data.length === 0) {
         ctx.commit("setLoading", true);
         const resp = await getBanners();
+        console.log(resp);
         ctx.commit("setData", resp);
         ctx.commit("setLoading", false);
       }
