@@ -42,7 +42,7 @@ new Vue({
 // });
 
 // 测试新封装的API接口
-// import * as blogAPI from "@/api/blog.js";
+import * as blogAPI from "@/api/blog.js";
 // blogAPI
 //   .getBlogContentById("4B15914c-eFD5-048B-B43c-AE4c31bC9E97")
 //   .then((resp) => {
@@ -58,9 +58,12 @@ new Vue({
 //   .then((resp) => {
 //     console.log("提交评论", resp);
 //   });
-
-// blogAPI.getComments("123123").then((resp) => {
+// console.log(blogAPI);
+// blogAPI.getComments(1, 10, "6339259e89d52a2dc48ff347").then((resp) => {
 //   console.log("获取的评论:", resp);
+// });
+// blogAPI.getTest().then((resp) => {
+//   console.log(resp);
 // });
 
 // 测试事件总线接口

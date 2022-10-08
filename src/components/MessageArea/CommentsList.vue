@@ -12,12 +12,15 @@
         {{ formatDate(item.createDate) }}
       </div>
     </li>
+
+    <Empty v-if="list ? list.length === 0 : false" text="暂无评论"/>
   </ul>
 </template>
 
 <script>
 import Avatar from "@/components/Avatar";
 import { formatDate } from "@/utils";
+import Empty from "@/components/Empty";
 export default {
   props: {
     list: {
@@ -27,6 +30,7 @@ export default {
   },
   components: {
     Avatar,
+    Empty,
   },
   methods: {
     formatDate,
@@ -40,7 +44,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 50px;
-  // background-color: darken(rgb(157, 157, 238), 10%);
+  position: relative;
   .item {
     width: 100%;
     border-bottom: 1px solid lighten(@gray, 20%);

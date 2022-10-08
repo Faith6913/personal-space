@@ -7,7 +7,6 @@
       :isListLoading="isLoading"
       @submit="handlerSubmit"
     />
-    <Empty v-if="data.rows ? data.rows.length === 0 : false" />
   </div>
 </template>
 
@@ -18,42 +17,51 @@ import fetchAPI from "@/mixins/fetchData";
 import eventBus from "@/eventBus.js";
 import Empty from "@/components/Empty";
 export default {
-  mixins: [fetchAPI({})],
   data() {
     return {
       page: 1,
       limit: 10,
+      // isLoading: true,
+      // data: {
+      //   total: 0,
+      //   rows: [],
+      // },
     };
   },
+  mixins: [fetchAPI({})],
   components: {
     MessageArea,
     Empty,
   },
   methods: {
     async fetchData() {
-      return await getComments(this.page, this.limit, this.$route.params.id);
+      // return await getComments(this.page, this.limit, this.$route.params.id);
+      const page = this.page;
+      const limit = this.limit;
+      const id = this.$route.params.id;
+      return await getComments(1, 10, id);
     },
     // 给出一个获取更多的函数封装，便于后续调用
     async fetchMore() {
-      if (!this.data.rows) {
-        return;
-      }
-      if (this.data.rows.length >= this.data.total) {
-        return;
-      }
-      this.page++;
-      this.isLoading = true;
-      const resp = await getComments(
-        this.page,
-        this.limit,
-        this.$route.params.id
-      );
-      this.data.total = resp.total;
-      if (!this.data.rows) {
-        return;
-      }
-      this.data.rows = this.data.rows.concat(resp.rows);
-      this.isLoading = false;
+      // if (!this.data.rows) {
+      //   return;
+      // }
+      // if (this.data.rows.length >= this.data.total) {
+      //   return;
+      // }
+      // this.page++;
+      // this.isLoading = true;
+      // const resp = await getComments(
+      //   this.page,
+      //   this.limit,
+      //   this.$route.params.id
+      // );
+      // this.data.total = resp.total;
+      // if (!this.data.rows) {
+      //   return;
+      // }
+      // this.data.rows = this.data.rows.concat(resp.rows);
+      // this.isLoading = false;
     },
     async handlerSubmit(nickname, content, callback) {
       const resp = await postComment({

@@ -60,7 +60,7 @@
       </div>
     </ul>
 
-    <Empty v-if="data.rows ? data.rows.length === 0 : false" />
+    <Empty v-if="data.rows ? data.rows.length === 0 : false" text="暂无博客"/>
   </div>
 </template>
 

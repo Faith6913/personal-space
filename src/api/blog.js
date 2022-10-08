@@ -65,12 +65,7 @@ export async function getComments(
   blogId = -1,
   keyWord = ""
 ) {
-  return await request.get(`/api/comment`, {
-    params: {
-      page,
-      limit,
-      blogId,
-      keyWord,
-    },
-  });
+  return await request.get(
+    `/api/comment?page=${page}&limit=${limit}&blogid=${blogId}&keyWord=${keyWord}`
+  );
 }

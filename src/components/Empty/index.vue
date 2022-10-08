@@ -28,11 +28,6 @@ export default {
 @textColor: rgb(217, 215, 215);
 @iconColor: rgb(150, 149, 149);
 .empty-container {
-  // height: inherit;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   .self-center();
   .iconfont {
     font-size: 80px;
