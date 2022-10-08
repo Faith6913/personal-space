@@ -15,7 +15,6 @@ export async function getBlogs(page = 1, limit = 10, categoryid = -1) {
       categoryid,
     },
   });
-  console.log(resp);
   return resp;
 }
 /**

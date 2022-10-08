@@ -48,7 +48,7 @@ const routes = [
   {
     name: "CategoryBlog",
     path: "/blog/cate/:categoryId",
-    component: getPageComponent(() => import("@/views/Blog")),
+    component: getPageComponent(() => import("@/views/CategoryBlog")),
     meta: {
       title: "博客",
     },

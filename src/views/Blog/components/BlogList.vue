@@ -66,31 +66,47 @@
 
 <script>
 import { getBlogs } from "@/api/blog.js";
-import fetchAPI from "@/mixins/fetchData";
 import toTopAPI from "@/mixins/toTop";
 import Pager from "@/components/Pager";
 import { formatDate } from "@/utils";
 import eventBus from "@/eventBus.js";
 import Empty from "@/components/Empty";
 export default {
-  mixins: [fetchAPI({}), toTopAPI],
+  mixins: [toTopAPI],
   components: {
     Pager,
     Empty,
   },
+  props: {
+    isCategoryed: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   data() {
     return {
-      total: null,
+      isLoading: true,
+      data: {
+        total: null,
+        rows: [],
+      },
     };
   },
   computed: {
     // 获取路由里的信息
     routeInfo() {
-      const categoryId = +this.$route.params.categoryId || -1;
+      const blogCategoryId = this.$route.params.categoryId || -1;
       const page = +this.$route.query.page || 1;
       const limit = +this.$route.query.limit || 10;
+
+      // console.log(
+      //   "routeInfo内:",
+      //   this.$route.params.categoryId,
+      //   blogCategoryId
+      // );
       return {
-        categoryId,
+        blogCategoryId,
         page,
         limit,
       };
@@ -122,6 +138,7 @@ export default {
         });
       }
     },
+
     async fetchData() {
       const resp = await getBlogs(
         this.routeInfo.page,
@@ -131,8 +148,25 @@ export default {
       this.total = resp.total;
       return resp;
     },
+    async updateBlogList() {
+      this.isLoading = true;
+      const datas = await this.fetchData();
+      const filterArr = datas.rows.filter((item) => {
+        if (this.routeInfo.blogCategoryId + "" === "-1") {
+          return true;
+        }
+        return item.category.id + "" === this.routeInfo.blogCategoryId + "";
+      });
+      if (filterArr === []) {
+        // this.data.rows = [];
+        // console.log("筛选出来是空的", filterArr);
+      } else {
+        // console.log("筛选出来有数据", filterArr);
+        this.data.rows = filterArr;
+      }
+      this.isLoading = false;
+    },
     formatDate,
-
     // 下列代码实现分类超链接的点击不跳转页面只跳转路由，但是可以用<RouterLink />实现
     // handlerClick(e, categoryId) {
     //   e.preventDefault();
@@ -149,6 +183,9 @@ export default {
     //   });
     // },
   },
+  async created() {
+    await this.updateBlogList();
+  },
   watch: {
     // 观察this.data
     // data(){}
@@ -156,9 +193,8 @@ export default {
     // 观察this.$route
     // 简洁写法
     async $route() {
-      this.isLoading = true;
-      this.data = await this.fetchData();
-      this.isLoading = !this.isLoading;
+      // this.isLoading = true;
+      await this.updateBlogList();
     },
     // 完整写法
     // $route: {

@@ -16,11 +16,10 @@ export default {
   },
   computed: {
     categoryId() {
-      return +this.$route.params.categoryId || -1;
+      return this.$route.params.categoryId || -1;
     },
     appList() {
       if (!this.data) {
-        // cosnole.log(this.data);
         return;
       }
       const totleArticleCount = this.data.reduce((prev, cur) => {

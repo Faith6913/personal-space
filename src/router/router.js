@@ -2,7 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import config from "./routerConfig";
 import titleControl from "@/utils/titleControl";
+const originalPush = VueRouter.prototype.push;
 
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err);
+};
 if (!window.VueRouter) {
   // 没有使用传统的方式引入VueRouter
   Vue.use(VueRouter);
