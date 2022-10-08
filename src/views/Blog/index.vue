@@ -26,6 +26,8 @@ export default {
 
 <style lang="less" scoped>
 .blog-conatiner {
+  
+  font-family: "Times New Roman", Times, serif;
   .rightList {
     overflow-y: scroll;
   }

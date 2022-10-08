@@ -217,7 +217,7 @@ export default {
   position: relative;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  // background-color: rgb(227, 182, 182);
+  font-family: "Times New Roman", Times, serif;
   .article-preview-container {
     width: 90%;
     position: absolute;
@@ -226,10 +226,8 @@ export default {
     transform: translateX(-50%);
     padding: 10px 20px;
     scroll-behavior: smooth;
-    // background-color: rgb(144, 239, 100);
     .article-item {
       width: 100%;
-      // background-color: #b3b8b8;
       display: flex;
       margin-bottom: 20px;
       padding: 10px;
@@ -248,6 +246,7 @@ export default {
           width: 100%;
           height: 100%;
           border-radius: 10px;
+          object-fit: contain;
         }
       }
       .main {

@@ -35,5 +35,6 @@ export default {
 .left {
   width: 250px;
   height: 100vh;
+  font-family: "Times New Roman", Times, serif;
 }
 </style>

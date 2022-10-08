@@ -57,6 +57,7 @@ export default {
 
 <style lang="less" scoped>
 .main-container {
+  font-family: "Times New Roman", Times, serif;
   overflow-y: scroll;
   height: 100%;
   box-sizing: border-box;

@@ -75,6 +75,7 @@ export default {
   position: relative;
   height: 100%;
   overflow-y: auto;
+  font-family: "Times New Roman", Times, serif;
   h2 {
     font-size: 20px;
     font-weight: bold;
