@@ -60,7 +60,7 @@
       </div>
     </ul>
 
-    <Empty v-if="data.rows ? data.rows.length === 0 : false" text="暂无博客"/>
+    <Empty v-if="data.rows ? data.rows.length === 0 : false" text="暂无博客" />
   </div>
 </template>
 
@@ -143,14 +143,18 @@ export default {
       const resp = await getBlogs(
         this.routeInfo.page,
         this.routeInfo.limit,
-        this.routeInfo.categoryId
+        this.routeInfo.blogCategoryId
       );
       this.total = resp.total;
+      console.log(resp);
       return resp;
     },
     async updateBlogList() {
       this.isLoading = true;
       const datas = await this.fetchData();
+      // const datas = await getBlogs(1, 10, this.routeInfo.blogCategoryId);
+      this.total = datas.total;
+
       const filterArr = datas.rows.filter((item) => {
         if (this.routeInfo.blogCategoryId + "" === "-1") {
           return true;
