@@ -151,6 +151,7 @@ export default {
     },
     async updateBlogList() {
       this.isLoading = true;
+      this.$route.query.page = 1;
       const datas = await this.fetchData();
       // const datas = await getBlogs(1, 10, this.routeInfo.blogCategoryId);
       this.total = datas.total;
