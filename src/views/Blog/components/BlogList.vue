@@ -146,14 +146,28 @@ export default {
         this.routeInfo.blogCategoryId
       );
       this.total = resp.total;
-      console.log(resp);
       return resp;
     },
     async updateBlogList() {
       this.isLoading = true;
-      this.$route.query.page = 1;
+      // this.$route.query.page = 1;
+      const datas1 = await this.fetchData();
+      console.log(this.$route, datas1.rows.length);
+      if (
+        (this.$route.params.categoryId === -1 ||
+          this.$route.params.categoryId) &&
+        datas1.rows.length === 0
+      ) {
+        this.$router.push({
+          name: "CategoryBlog",
+          params: {
+            page: 1,
+            limit: 10,
+          },
+        });
+        this.$route.query.page = 1;
+      }
       const datas = await this.fetchData();
-      // const datas = await getBlogs(1, 10, this.routeInfo.blogCategoryId);
       this.total = datas.total;
 
       const filterArr = datas.rows.filter((item) => {

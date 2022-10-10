@@ -12,7 +12,6 @@ export async function getBlogs(page = 1, limit = 10, categoryid = -1) {
     `/api/blog?page=${page}&limit=${limit}&categoryid=${categoryid}`
     // `/api/blog?page=1&limit=10&categoryid=6336e8bbea1eb33824018f14`
   );
-  console.log(resp);
   return resp;
 }
 /**
