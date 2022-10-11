@@ -16,7 +16,7 @@
         >分类: {{ blog.category ? blog.category.name : "无分类" }}</RouterLink
       >
     </div>
-    <div v-html="blog.htmlContent" class="markdown-body"></div>
+    <div v-html="blog.htmlContent" v-highlight class="markdown-body"></div>
   </div>
 </template>
 
@@ -66,7 +66,7 @@ export default {
       }
     }
   }
-  .markdown-body{
+  .markdown-body {
     font-family: "Times New Roman", Times, serif;
   }
 }

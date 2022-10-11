@@ -1,6 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 // import "./mock";
+//导入代码高亮文件
+import hljs from "highlight.js";
+//导入代码高亮样式
+import "highlight.js/styles/monokai-sublime.css";
 import "./styles/var.less";
 import "./styles/global.less";
 import { showMessage } from "@/utils";
@@ -15,7 +19,13 @@ import vloading from "@/directives/loading";
 import vlazy from "@/directives/lazy";
 Vue.directive("loading", vloading); // 加载中指令
 Vue.directive("lazy", vlazy); // 图片懒加载指令
-
+//自定义一个代码高亮指令
+Vue.directive("highlight", function (el) {
+  let highlight = el.querySelectorAll("pre code");
+  highlight.forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+});
 // 引入路由模块
 import router from "./router/router.js";
 
